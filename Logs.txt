@@ -1,0 +1,89 @@
+NARAD - QC : Network Architecture for Routing, Authentication and Distribution in Quantum Communications
+
+HOW CAN A QUANTUM SECURE COMMUNICATION NETWORK DYNAMICALLY SELECT RELIABLE, AUTHENTICATED, LOW-QBER PATHS BETWEEN MULTIPLE USERS?
+
+Phase Plan : 
+    Phase 0 : 
+        Goal : Rebuild point to point CrypTon key generation and AES baseline
+        Objective : Prove the original point-to-point system is working as the baseline.
+
+    Phase 1 : 
+        Goal : Add distance-dependent photon loss, QBER, keygen latency, and accepted/rejected rounds.
+        
+        Objective : Evaluate how distance affects QKD in terms of photon loss, QBER, Key generation latency.
+
+        Variables : 
+            * Distance: 10 km, 25 km, 50 km, 75 km, 100 km
+            * Fiber attenuation model: approximate 0.2 dB/km
+            * Noise factor: optional small baseline noise
+        
+        Outputs :
+            * Distance vs QBER
+            * Distance vs key generation time
+            * Distance vs successful key rate
+            * Distance vs accepted/rejected rounds
+
+        Question : How does increasing physical separation affect secure key establishment in CrypTon?
+
+    Phase 2 : 
+        Goal : Add a single repeater so that Alice <--> Bob chain becomes ===> Alice <--> R1 <--> Bob
+
+        Objective : Measure whether splitting distance improves stability and key availability.
+
+        Metrics :
+            * end-to-end QBER
+            * key generation time
+            * accepted key rate
+            * maximum supported distance
+            * improvement over direct link
+        
+        Question : Can a single repeater improve the effective QKD range and reliability compared to direct transmission?
+
+    Phase 3 : 
+        Goal : Introduce multi repeater chain instead of a single repeater
+
+        Objective : Study hop count, synchronization delay, bottleneck links, and end-to-end key generation.
+
+        Variables:
+            * Number of repeaters: 1, 2, 3, 5
+            * Equal-distance segments vs unequal-distance segments
+            * Fixed total distance vs increasing total distance
+
+        Metrics:
+            * total end-to-end key latency
+            * weakest-link bottleneck
+            * cumulative trust score
+            * average QBER
+            * accepted key probability
+            * synchronization delay
+
+        Question : How does repeater-chain length influence stability, latency, and key availability?
+
+    Phase 4 : 
+        Goal : Introduce multiple possible repeater paths and Dilithium-based authentication over the classical control channel.
+
+        Objective : Choose paths using quantum-aware metrics, not just shortest distance.
+
+        Possible path score = weighted combination of:
+            - total distance
+            - expected QBER
+            - key generation latency
+            - hop count
+            - link success probability
+            - repeater trust/authentication status
+
+    Phase 5 : 
+        Goal : Multi-User Quantum Network Topology
+
+        Build a small network with:
+            * 4 users
+            * 10 repeaters
+            * multiple weighted links
+            * authenticated routing
+            * best-path selection
+            * session key generation
+            * AES encrypted message delivery
+
+        Objective : NARAD-QC becomes a small quantum-secure communication network simulator.
+
+        QUESTION : How can a quantum-secure communication network dynamically select reliable, authenticated, low-QBER paths between multiple users?
