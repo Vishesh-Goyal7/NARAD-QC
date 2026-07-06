@@ -1,4 +1,4 @@
-NARAD - QC : Network Architecture for Routing, Authentication and Distribution in Quantum Communications
+NARAD - QC : Network Architecture for Routing, Authentication and Delivery in Quantum Communications
 
 HOW CAN A QUANTUM SECURE COMMUNICATION NETWORK DYNAMICALLY SELECT RELIABLE, AUTHENTICATED, LOW-QBER PATHS BETWEEN MULTIPLE USERS?
 
