@@ -87,3 +87,8 @@ Phase Plan :
         Objective : NARAD-QC becomes a small quantum-secure communication network simulator.
 
         QUESTION : How can a quantum-secure communication network dynamically select reliable, authenticated, low-QBER paths between multiple users?
+
+
+PHASE 0 : 
+    Start TimeStamp : 06072026-16:28:32
+    End TimeStamp : 06072026-16:48:53
