@@ -4,7 +4,8 @@ HOW CAN A QUANTUM SECURE COMMUNICATION NETWORK DYNAMICALLY SELECT RELIABLE, AUTH
 
 Phase Plan : 
     Phase 0 : 
-        Goal : Rebuild point to point CrypTon key generation and AES baseline
+        Goal : Rebuild point to point CrypTon key generation and AES baseline.
+        
         Objective : Prove the original point-to-point system is working as the baseline.
 
     Phase 1 : 
@@ -92,3 +93,56 @@ Phase Plan :
 PHASE 0 : 
     Start TimeStamp : 06072026-16:28:32
     End TimeStamp : 06072026-16:48:53
+    Declare configuration variable : 
+        QBER in ideal scenario : 11%
+        Nonce length (In AES) : 12
+
+PHASE 1 : 
+    Start TimeStamp : 06072026-17:08:12
+    End TimeStamp : 
+
+    Quantum Link : It can be thought of as an optical fiber. When Alice sends 256 qubits, the quantum link decides
+        * How many qubits survive?
+        * How noisy are the received qubits?
+        * How much delay came?
+        * What is the expected QBER?
+
+                      Alice
+                        │
+                        │
+            ┌──────────────────────┐
+            │ Quantum Link         │
+            │----------------------│
+            │ Distance             │
+            │ Photon Survival      │
+            │ QBER                 │
+            │ Latency              │
+            │ Status               │
+            └──────────────────────┘
+                        │
+                        │
+                       Bob
+
+        class QuantumLink : 
+            source
+            destination
+            distance_km
+            attenuation_db
+            noise_probability
+            photon_survival
+            latency
+            status
+
+    Node : We define a Node class in this phase to separate the user and the repeaters that will be introduced at later stages. 
+
+    Instead of the normal BB84 framework, we evaluated the system on BB84, T12 and an 80-20 biased Z basis model to improve the keys generated and required. 
+
+    During the normal BB84 protocol, earlier, we sent a fixed batch of qubits like 256. In this process, we are making the quantum link aware of the expected qubits to ask from Alice so that they can form the key in one round itself. 
+
+    Estimated number of photons = Number of photons required for key * Estimation Margin (Keeping it as 1.3) / Photons lost during the fiber optics / Probability of qubits accepted after bases match
+
+    Photons lost during fiber optics = 10 ^ (-alpha * d / 10) where d is the distance and alpha is the attenuation constant from fier optics (0.2 dB/km)
+
+    Probability of qubits accepted after bases match = z_probability^2 + (1 - z_probability)^2
+
+    
