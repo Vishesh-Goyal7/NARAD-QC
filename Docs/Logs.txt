@@ -89,17 +89,18 @@ Phase Plan :
 
         QUESTION : How can a quantum-secure communication network dynamically select reliable, authenticated, low-QBER paths between multiple users?
 
+IMPLEMENTATION : 
 
 PHASE 0 : 
-    Start TimeStamp : 06072026-16:28:32
-    End TimeStamp : 06072026-16:48:53
+    Start TimeStamp : 06-07-2026T16:15:32
+    End TimeStamp : 06-07-2026T16:48:53
     Declare configuration variable : 
         QBER in ideal scenario : 11%
         Nonce length (In AES) : 12
 
 PHASE 1 : 
-    Start TimeStamp : 06072026-17:08:12
-    End TimeStamp : 
+    Start TimeStamp : 06-07-2026T17:08:12
+    End TimeStamp : 07-07-2026T16:37:51
 
     Quantum Link : It can be thought of as an optical fiber. When Alice sends 256 qubits, the quantum link decides
         * How many qubits survive?
@@ -145,4 +146,39 @@ PHASE 1 :
 
     Probability of qubits accepted after bases match = z_probability^2 + (1 - z_probability)^2
 
-    
+PHASE 2 : 
+    Start TimeStamp : 07-07-2026T16:50:12
+    End TimeStamp : 
+
+    Instead of accurately replicating the physical quantum repeater, we model the essentials of it in the simulation. A long quantum channel is decomposed into shorter elementary quantum links. Each link attempts entanglement generation. If both elementary links succeed, the repeater performs entanglement swapping and creates an effective end-to-end quantum connection between Alice and Bob.
+
+    Phase 2 models entanglement generation probabilistically, where each elementary Bell-pair generation attempt succeeds according to the photon survival probability of the corresponding quantum link. Successful attempts produce Bell-pair objects stored in repeater memory, and end-to-end entanglement is created through an abstract entanglement-swapping operation.
+
+    Attempt to generate a Bell pair across one elementary quantum link.
+    Phase 2A abstraction:
+    - Success probability is approximated using link photon survival probability.
+    - Successful attempt returns a BellPair object.
+    - Failed attempt returns None.
+
+    The repeater does not learn the key/message.
+    It only helps convert two elementary entangled links
+    into one end-to-end entangled link.
+
+    Memory-assisted single quantum repeater model.
+
+    Topology:
+        source ---- repeater ---- destination
+
+    Process:
+    1. Try generating BellPair(source ↔ repeater).
+    2. Try generating BellPair(repeater ↔ destination).
+    3. Store successful Bell pairs in quantum memory.
+    4. Retry only failed side.
+    5. Once both Bell pairs exist, perform entanglement swapping.
+    6. Output BellPair(source ↔ destination).
+
+    Phase 2A first evaluates the ideal repeater-assisted upper bound, assuming perfect Bell-state measurement and no fidelity degradation. This isolates the effect of memory-assisted segmentation. Later experiments relax this assumption by varying swapping success probability and Bell-pair fidelity. 
+
+    Each elementary Bell-pair generation attempt is modeled as a Bernoulli trial whose success probability is determined by the fiber survival probability of the corresponding quantum link.
+
+    Phase 2A assumes ideal Bell-pair fidelity and perfect memory, isolating the effect of distance and storage-assisted entanglement generation.

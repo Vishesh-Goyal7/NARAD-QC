@@ -1,0 +1,44 @@
+Attempt 1: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 2: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 3: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 4: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 5: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 6: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 7: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 8: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 9: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 10: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 11: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 12: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 13: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 14: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 15: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 16: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 17: L_pair=False, R_pair=False, L_age=0, R_age=0
+Attempt 18: L_pair=False, R_pair=True, L_age=0, R_age=0
+Attempt 19: L_pair=False, R_pair=True, L_age=0, R_age=1
+
+
+======================================================================
+Phase 2A Single Repeater Result
+======================================================================
+source                             : Alice
+repeater                           : R1
+destination                        : Bob
+total_distance_km                  : 100
+segment_distance_km                : 50.000000
+direct_survival_probability        : 0.010000
+segment_survival_probability       : 0.100000
+swapping_success_probability       : 1.000000
+memory_lifetime_attempts           : 10000
+global_attempts_required           : 20
+left_attempts                      : 20
+right_attempts                     : 18
+swap_attempts                      : 1
+left_memory_expirations            : 0
+right_memory_expirations           : 0
+final_bell_pair                    : BellPair(Alice ↔ Bob, F=1.0000)
+final_fidelity                     : 1.000000
+success                            : True
+time_s                             : 0.000248
+======================================================================

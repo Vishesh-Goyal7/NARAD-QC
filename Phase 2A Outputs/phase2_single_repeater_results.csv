@@ -1,0 +1,8 @@
+Distance (km),Direct Survival Probability (%),Direct Expected Attempts,Segment Distance (km),Segment Survival Probability (%),Repeater Global Attempts,Left Link Attempts,Right Link Attempts,Swap Attempts,Final Bell Pair,Final Fidelity,Memory Lifetime,Left Memory Expirations,Right Memory Expirations,Repeater Success,Improvement Factor
+50,10.0,10.0,25.0,31.622776601683793,1,1,1,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,10.0
+80,2.5118864315095792,39.810717055349734,40.0,15.848931924611135,4,1,4,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,9.952679263837434
+100,1.0,100.0,50.0,10.0,38,3,38,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,2.6315789473684212
+150,0.1,1000.0,75.0,3.162277660168379,20,8,20,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,50.0
+200,0.01,10000.0,100.0,1.0,82,45,82,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,121.95121951219512
+250,0.001,99999.99999999999,125.0,0.31622776601683794,582,42,582,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,171.82130584192439
+300,9.999999999999999e-05,1000000.0,150.0,0.1,1680,1680,663,1,"BellPair(Alice ↔ Bob, F=1.0000)",1.0,10000,0,0,True,595.2380952380952
