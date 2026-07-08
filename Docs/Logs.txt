@@ -148,7 +148,7 @@ PHASE 1 :
 
 PHASE 2 : 
     Start TimeStamp : 07-07-2026T16:50:12
-    End TimeStamp : 
+    End TimeStamp : 09-07-2026T02:17:32
 
     Instead of accurately replicating the physical quantum repeater, we model the essentials of it in the simulation. A long quantum channel is decomposed into shorter elementary quantum links. Each link attempts entanglement generation. If both elementary links succeed, the repeater performs entanglement swapping and creates an effective end-to-end quantum connection between Alice and Bob.
 
