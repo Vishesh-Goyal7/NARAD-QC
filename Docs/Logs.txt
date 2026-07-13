@@ -182,3 +182,7 @@ PHASE 2 :
     Each elementary Bell-pair generation attempt is modeled as a Bernoulli trial whose success probability is determined by the fiber survival probability of the corresponding quantum link.
 
     Phase 2A assumes ideal Bell-pair fidelity and perfect memory, isolating the effect of distance and storage-assisted entanglement generation.
+
+PHASE 3 : 
+    Start TimeStamp : 09-07-2026T10:50:12
+    End TimeStamp : 
