@@ -184,5 +184,24 @@ PHASE 2 :
     Phase 2A assumes ideal Bell-pair fidelity and perfect memory, isolating the effect of distance and storage-assisted entanglement generation.
 
 PHASE 3 : 
-    Start TimeStamp : 09-07-2026T10:50:12
+    Start TimeStamp : 14-07-2026T10:42:12
     End TimeStamp : 
+
+    Phase 3A : 
+        Till now, our distance was just a scalar quantity because we were considering only one node. Now, we have multiple repeaters in a single chain. 
+
+        Hence, now, we start using a 2D graph. Each Node gets not just name and role but also the x and y coordinates. The QuantumLink class automatically sees the node's coordinates and calculates the distance, fiber attenuation etc. 
+
+        We also introduce a class by the name of NARAD which is the owner of all the classes. It is essentially a base Level 1 of the intended classical channel that we wish to create at the end of the project. We separate the quantum and physical responsibilities and this is a network colntroller. It itself doesn't take part in any quantum protocols or decisions, it simply stores the entire graph's data and the routing dynamic. 
+
+        We improvise the QuantumLink class from earlier to be a better part of NARAD and accept the new parameters of Node class. 
+
+    Phase 3B : 
+        In Phase 3B, we define Quantum Memory for each of the repeaters with session ids. 
+
+        There are two things in this : 
+        1) Quantum Memory Slot : This is just the storage unit which stores the bell pair, age, owners, session id, link id.
+        2) Quantum Memory : This is the memory unit that micro manages and controls all the slots. 
+
+    Phase 3C : 
+        
