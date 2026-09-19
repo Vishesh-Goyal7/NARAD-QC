@@ -1,0 +1,25 @@
+{
+  "total_distance_km": 600.0,
+  "repeater_counts": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "policies": [
+    "SEQUENTIAL_LEFT_TO_RIGHT",
+    "STATIC_BALANCED_TREE",
+    "MAX_PARALLEL_OLDEST_FIRST"
+  ],
+  "trials_per_configuration": 100,
+  "atomic_bsm_success_probability": 0.4,
+  "max_storage_slots": 100,
+  "slot_duration_s": 0.05,
+  "elementary_fidelity": 0.995,
+  "fiber_attenuation_db_per_km": 0.2,
+  "max_execution_slots": 20000,
+  "base_seed": 3720000
+}
