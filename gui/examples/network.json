@@ -1,0 +1,195 @@
+{
+  "name": "NARAD research network",
+  "nodes": [
+    {
+      "name": "Alice",
+      "role": "USER",
+      "x_km": 0,
+      "y_km": 0,
+      "memory_slots": 2,
+      "bsm_units": 0,
+      "bsm_success_probability": 0,
+      "active": true
+    },
+    {
+      "name": "Bob",
+      "role": "USER",
+      "x_km": 300,
+      "y_km": 0,
+      "memory_slots": 2,
+      "bsm_units": 0,
+      "bsm_success_probability": 0,
+      "active": true
+    },
+    {
+      "name": "Charlie",
+      "role": "USER",
+      "x_km": 150,
+      "y_km": 85,
+      "memory_slots": 2,
+      "bsm_units": 0,
+      "bsm_success_probability": 0,
+      "active": true
+    },
+    {
+      "name": "R1",
+      "role": "REPEATER",
+      "x_km": 55,
+      "y_km": 20,
+      "memory_slots": 8,
+      "bsm_units": 2,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R2",
+      "role": "REPEATER",
+      "x_km": 120,
+      "y_km": 15,
+      "memory_slots": 8,
+      "bsm_units": 2,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R3",
+      "role": "REPEATER",
+      "x_km": 205,
+      "y_km": 18,
+      "memory_slots": 8,
+      "bsm_units": 2,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R4",
+      "role": "REPEATER",
+      "x_km": 75,
+      "y_km": -55,
+      "memory_slots": 12,
+      "bsm_units": 3,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R5",
+      "role": "REPEATER",
+      "x_km": 165,
+      "y_km": -65,
+      "memory_slots": 12,
+      "bsm_units": 3,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R6",
+      "role": "REPEATER",
+      "x_km": 245,
+      "y_km": -45,
+      "memory_slots": 12,
+      "bsm_units": 3,
+      "bsm_success_probability": 0.4,
+      "active": true
+    }
+  ],
+  "links": [
+    {
+      "source": "Alice",
+      "target": "R1",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R1",
+      "target": "R2",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R2",
+      "target": "R3",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R3",
+      "target": "Bob",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "Alice",
+      "target": "R4",
+      "modes": 16,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R4",
+      "target": "R5",
+      "modes": 16,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R5",
+      "target": "R6",
+      "modes": 16,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R6",
+      "target": "Bob",
+      "modes": 16,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R1",
+      "target": "R5",
+      "modes": 6,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R2",
+      "target": "R5",
+      "modes": 10,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R3",
+      "target": "R6",
+      "modes": 12,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R2",
+      "target": "Charlie",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "Charlie",
+      "target": "R3",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "Charlie",
+      "target": "R1",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    }
+  ]
+}
