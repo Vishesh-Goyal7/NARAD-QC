@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "features": [
+    "elementary_distance_km",
+    "repeater_count",
+    "multiplexed_cycle_success_probability"
+  ],
+  "python": "3.12.11",
+  "scikit_learn": "1.9.1",
+  "joblib": "1.6.0",
+  "calibration_bounds": {
+    "elementary_distance_km": [
+      22.22222222222222,
+      200.0
+    ],
+    "repeater_count": [
+      2.0,
+      8.0
+    ],
+    "multiplexed_cycle_success_probability": [
+      9.9999999999989e-05,
+      0.9991953758399624
+    ]
+  },
+  "sha256": "192ae4aad284f48b9df8a32cf1a0e4c0d7d494081dbf0771fd23be8bb49ac071"
+}

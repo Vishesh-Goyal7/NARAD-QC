@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "created_unix": 1792661898.15233,
+  "available_cpus": 8,
+  "recommended_workers": 4,
+  "physics_equivalent": true,
+  "pairs_per_repeat": 48,
+  "workload": {
+    "distance_km": 600.0,
+    "repeaters": 6,
+    "modes": 8
+  },
+  "results": [
+    {
+      "workers": 1,
+      "pairs_per_s": 0.14977323357364974,
+      "runs": [
+        {
+          "workers": 1,
+          "pairs": 48,
+          "wall_time_s": 321.21632970898645,
+          "pairs_per_s": 0.14943200441735555,
+          "total_worker_cpu_s": 320.287655,
+          "effective_busy_cores": 0.9971088807663426,
+          "worker_processes_observed": 1,
+          "mean_system_cpu_percent": 16.690079365079367,
+          "peak_system_cpu_percent": 76.7,
+          "minimum_available_ram_gib": 1.0987396240234375,
+          "repeat": 1,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 1,
+          "pairs": 48,
+          "wall_time_s": 319.1771795829991,
+          "pairs_per_s": 0.15038669137534014,
+          "total_worker_cpu_s": 318.77693500000004,
+          "effective_busy_cores": 0.9987460112796223,
+          "worker_processes_observed": 1,
+          "mean_system_cpu_percent": 15.369544364508396,
+          "peak_system_cpu_percent": 70.8,
+          "minimum_available_ram_gib": 1.17791748046875,
+          "repeat": 2,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 1,
+          "pairs": 48,
+          "wall_time_s": 320.4845008330303,
+          "pairs_per_s": 0.14977323357364974,
+          "total_worker_cpu_s": 319.966943,
+          "effective_busy_cores": 0.998385076870535,
+          "worker_processes_observed": 1,
+          "mean_system_cpu_percent": 16.46950636942675,
+          "peak_system_cpu_percent": 65.3,
+          "minimum_available_ram_gib": 1.1359405517578125,
+          "repeat": 3,
+          "physics_equivalent": true
+        }
+      ]
+    },
+    {
+      "workers": 2,
+      "pairs_per_s": 0.29368385872394814,
+      "runs": [
+        {
+          "workers": 2,
+          "pairs": 48,
+          "wall_time_s": 162.42038487503305,
+          "pairs_per_s": 0.2955294068348096,
+          "total_worker_cpu_s": 321.1715819999999,
+          "effective_busy_cores": 1.9774093150136955,
+          "worker_processes_observed": 2,
+          "mean_system_cpu_percent": 27.58995290423862,
+          "peak_system_cpu_percent": 68.8,
+          "minimum_available_ram_gib": 1.156036376953125,
+          "repeat": 1,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 2,
+          "pairs": 48,
+          "wall_time_s": 164.62976541701937,
+          "pairs_per_s": 0.29156331407271613,
+          "total_worker_cpu_s": 323.35594899999995,
+          "effective_busy_cores": 1.96414025240767,
+          "worker_processes_observed": 2,
+          "mean_system_cpu_percent": 32.737829457364334,
+          "peak_system_cpu_percent": 86.3,
+          "minimum_available_ram_gib": 1.089569091796875,
+          "repeat": 2,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 2,
+          "pairs": 48,
+          "wall_time_s": 163.44105600001058,
+          "pairs_per_s": 0.29368385872394814,
+          "total_worker_cpu_s": 321.838444,
+          "effective_busy_cores": 1.9691407524923183,
+          "worker_processes_observed": 2,
+          "mean_system_cpu_percent": 30.71466458658346,
+          "peak_system_cpu_percent": 75.9,
+          "minimum_available_ram_gib": 1.2196807861328125,
+          "repeat": 3,
+          "physics_equivalent": true
+        }
+      ]
+    },
+    {
+      "workers": 4,
+      "pairs_per_s": 0.3767243565339852,
+      "runs": [
+        {
+          "workers": 4,
+          "pairs": 48,
+          "wall_time_s": 123.04497166600777,
+          "pairs_per_s": 0.39010127232416125,
+          "total_worker_cpu_s": 461.25712300000004,
+          "effective_busy_cores": 3.7486873031433783,
+          "worker_processes_observed": 4,
+          "mean_system_cpu_percent": 50.248140495867766,
+          "peak_system_cpu_percent": 89.2,
+          "minimum_available_ram_gib": 1.082855224609375,
+          "repeat": 1,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 4,
+          "pairs": 48,
+          "wall_time_s": 127.41411370801507,
+          "pairs_per_s": 0.3767243565339852,
+          "total_worker_cpu_s": 476.03313900000006,
+          "effective_busy_cores": 3.7361099578880865,
+          "worker_processes_observed": 4,
+          "mean_system_cpu_percent": 52.111576846307386,
+          "peak_system_cpu_percent": 98.7,
+          "minimum_available_ram_gib": 1.2028045654296875,
+          "repeat": 2,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 4,
+          "pairs": 48,
+          "wall_time_s": 129.67164612497436,
+          "pairs_per_s": 0.37016573348454895,
+          "total_worker_cpu_s": 483.24916599999995,
+          "effective_busy_cores": 3.7267142080872193,
+          "worker_processes_observed": 4,
+          "mean_system_cpu_percent": 51.86941176470589,
+          "peak_system_cpu_percent": 76.8,
+          "minimum_available_ram_gib": 1.125579833984375,
+          "repeat": 3,
+          "physics_equivalent": true
+        }
+      ]
+    },
+    {
+      "workers": 8,
+      "pairs_per_s": 0.3833652560119077,
+      "runs": [
+        {
+          "workers": 8,
+          "pairs": 48,
+          "wall_time_s": 119.68254945799708,
+          "pairs_per_s": 0.40106097519961115,
+          "total_worker_cpu_s": 537.429127,
+          "effective_busy_cores": 4.490455203651993,
+          "worker_processes_observed": 8,
+          "mean_system_cpu_percent": 59.96420824295011,
+          "peak_system_cpu_percent": 100.0,
+          "minimum_available_ram_gib": 1.178680419921875,
+          "repeat": 1,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 8,
+          "pairs": 48,
+          "wall_time_s": 134.0781753329793,
+          "pairs_per_s": 0.35800009867969473,
+          "total_worker_cpu_s": 554.6322339999999,
+          "effective_busy_cores": 4.13663321881124,
+          "worker_processes_observed": 8,
+          "mean_system_cpu_percent": 61.6078125,
+          "peak_system_cpu_percent": 97.3,
+          "minimum_available_ram_gib": 1.0926666259765625,
+          "repeat": 2,
+          "physics_equivalent": true
+        },
+        {
+          "workers": 8,
+          "pairs": 48,
+          "wall_time_s": 125.2069644999574,
+          "pairs_per_s": 0.3833652560119077,
+          "total_worker_cpu_s": 545.770929,
+          "effective_busy_cores": 4.3589502483321185,
+          "worker_processes_observed": 8,
+          "mean_system_cpu_percent": 59.20041666666667,
+          "peak_system_cpu_percent": 94.7,
+          "minimum_available_ram_gib": 1.100555419921875,
+          "repeat": 3,
+          "physics_equivalent": true
+        }
+      ]
+    }
+  ]
+}

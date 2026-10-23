@@ -13,6 +13,10 @@ npm --prefix gui run dev
 
 Open **http://127.0.0.1:5173**. The app initially uses a clearly labelled interactive demo. The demo animates the workflow and uses a fresh, non-extractable browser AES-GCM key. It does **not** claim to execute ML-DSA, BBM92, physical simulation, or Policy C. Its route preview is a local distance/multiplexing heuristic.
 
+## Connect a local or hosted backend
+
+See [`../backend/README.md`](../backend/README.md) for the standalone Python server. Start it with fitted calibration artifacts, then use the existing **Connect notebook** control with `http://127.0.0.1:8002` (or your hosted HTTPS backend URL) and the configured API key. The same GUI API supports workers, telemetry, and two-way messaging without Colab.
+
 ## Connect the actual notebook
 
 The existing Phase 6 endpoints cannot submit a custom topology or stream protocol events. The separate bridge supplies those features without rewriting the notebook or routing requests through the existing access middleware.

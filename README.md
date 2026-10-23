@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Docs/NARAD-QC%20Logo.png" alt="NARAD-QC logo" width="200">
+  <img src="Docs/NARAD-QC_20Logo.png" alt="NARAD-QC logo" width="200">
 </p>
 
 <h1 align="center">NARAD-QC</h1>
@@ -24,9 +24,9 @@ NARAD-QC explores this question through a resource-aware quantum-network simulat
 
 A route needs more than connectivity. Its fibres must support useful entanglement generation, its repeaters need available memory and Bell-state measurement resources, and its delivered pairs must retain enough quality to produce a secret key. NARAD-QC evaluates these constraints, ranks feasible paths using an empirically calibrated service model, authenticates the selected nodes, and attempts actual simulated key establishment. If a candidate fails, the orchestrator can try the next ranked route.
 
-The resulting key powers a **bidirectional AES-GCM session**: Alice can message Bob, and Bob can reply using the same established key. The GUI exposes the network, execution settings, protocol events, progress measurements, and encrypted message exchange in one workspace.
+The resulting key powers a **bidirectional AES-GCM session**. Alice can message Bob, and Bob can reply using the same established key. The GUI exposes the network, execution settings, protocol events, progress measurements, and encrypted message exchange in one workspace.
 
-**Project scope:** the quantum network is a software simulation; the authentication and AES routines execute cryptographic operations. This is a research implementation with physical and security-model assumptions, rather than a deployed quantum-hardware network or a production messaging service.
+**Project scope:** The NARAD-QC is a software simulation. The authentication and AES routines execute cryptographic operations. This is a research implementation with physical and security-model assumptions, rather than a deployed quantum-hardware network or a production messaging service.
 
 ## 📑 Contents
 
@@ -53,10 +53,10 @@ The resulting key powers a **bidirectional AES-GCM session**: Alice can message 
 
 ### Protocol engine
 
-- **Operator-defined networks** with user/repeater roles, coordinates, active fibres, multiplexing modes, memory slots, and BSM resources.
+- **Operator-defined networks** with user/repeater role nodes, coordinates, active fibres, multiplexing modes, memory slots, and BSM resources.
 - **Resource-aware route discovery** with repeater-only transit, hardware feasibility checks, and QKD quality constraints.
-- **Policy C routing** that combines predicted service reliability, conditional pair-delivery latency, and delivered quantum-state quality.
-- **ML-DSA authentication** of selected route nodes before quantum execution is authorized.
+- **Routing Policy** that combines predicted service reliability, conditional pair-delivery latency, and delivered quantum-state quality.
+- **ML-DSA authentication** of selected route nodes before quantum execution is authorised.
 - **Discrete-event entanglement simulation** with fibre loss, finite memory, decoherence, probabilistic generation, swapping, failure recovery, and resource consumption.
 - **Entanglement-based BBM92 QKD** with biased-basis measurement, sifting, parameter estimation, Cascade-style reconciliation, and Toeplitz privacy amplification.
 - **Parallel routed trajectories** with separate controls for CPU workers and provisioned quantum lanes.
@@ -64,7 +64,7 @@ The resulting key powers a **bidirectional AES-GCM session**: Alice can message 
 
 ### React console
 
-- Editable SVG topology with draggable users/repeaters and a property inspector.
+- Editable topology with draggable users/repeaters and a property inspector.
 - Graph JSON import/export and a supplied [example network](gui/examples/network.json).
 - Sender/receiver selection, route preview, QKD configuration, and asynchronous execution.
 - Coloured directional arrows that reflect protocol stage and message direction.
@@ -76,31 +76,16 @@ The resulting key powers a **bidirectional AES-GCM session**: Alice can message 
 
 ## 🏗️ System Architecture
 
-```mermaid
-flowchart TB
-    UI["React console · local browser"]
-    TUNNEL["Cloudflare HTTPS tunnel"]
-    BRIDGE["GUI bridge · FastAPI · port 8002"]
-    ENGINE["Initialized Colab notebook · NARAD-QC engine"]
-    ROUTE["Topology validation + Policy C routing"]
-    AUTH["ML-DSA route authentication"]
-    QKD["Entanglement delivery + BBM92 + distillation"]
-    SESSION["Backend session key + AES-GCM inboxes"]
-    UI <-->|"API-key authenticated REST + polling"| TUNNEL
-    TUNNEL <--> BRIDGE
-    BRIDGE --> ENGINE
-    ENGINE --> ROUTE --> AUTH --> QKD
-    QKD --> SESSION
-    SESSION <--> BRIDGE
-```
+<p align="center">
+  <img src="Docs/NARAD-QC_System_Flow.png" alt="NARAD-QC System Flow" width="950">
+  <br><em>NARAD-QC System Flow and Architecture Diagram</em>
+</p>
 
-The notebook contains the engine and its original Phase 6 API. The React console uses a **separate GUI bridge** that adds custom-topology submission, asynchronous jobs, incremental events, native progress, and two-way inboxes. The bridge runs inside the initialized notebook runtime and calls the engine's Python objects directly.
-
-The frontend does not run a quantum simulator in the browser. In connected mode, its protocol results come from the notebook. The bridge stores the session key on the backend and exposes public summaries and ciphertext deliveries to the console.
+The notebook contains the originally developed backend engine which was later converted into a locally runnable backend engine in this git repo. The frontend does not run a quantum simulator in the browser in the demo mode. In connected mode, its protocol results come directly from the backend engine that executes the protocol. 
 
 | Layer | Implementation |
 |---|---|
-| Engine and experiment environment | Python / Google Colab, `NARAD_QC.ipynb` |
+| Engine and experiment environment | Local backend Python 3.12 OR Google Colab notebook |
 | Physical-network simulation | Custom discrete-event kernel, quantum memory and entanglement models |
 | Numerical analysis and calibration | NumPy, pandas, scikit-learn, Matplotlib |
 | Route authentication | ML-DSA signature-based control plane |
@@ -109,20 +94,19 @@ The frontend does not run a quantum simulator in the browser. In connected mode,
 | Backend message encryption | AES-GCM via PyCryptodome |
 | Browser demo encryption | Web Crypto AES-GCM |
 | Frontend | React 19, JavaScript, SVG, CSS, Lucide icons, Vite |
-| Colab connectivity | Cloudflare tunnel to the GUI bridge |
 
 ---
 
 ## 🧬 Protocol Walkthrough
 
-1. **Describe the network.** Define active USER and REPEATER nodes, coordinates, fibre properties, memory, and BSM capacity. Choose two distinct users as endpoints.
-2. **Discover candidate paths.** Enumerate routes through repeaters. Users can be endpoints, but cannot act as intermediate repeaters.
-3. **Apply feasibility checks.** Reject paths that fail static resource requirements or fresh-pair QKD quality constraints.
-4. **Rank with Policy C.** Predict service reliability, delivery latency, and delivered visibility, then rank eligible candidates by useful quantum service.
-5. **Authenticate the selected route.** Perform fresh ML-DSA mutual authentication of the selected nodes and enforce quantum-execution eligibility.
-6. **Deliver end-to-end entanglement.** Generate elementary pairs, allocate memory, execute BSM swaps, and handle failures and expiry across the chosen heterogeneous route.
-7. **Collect a BBM92 block.** Measure delivered pairs using the biased basis policy; sift outcomes and estimate errors and extractable secret length.
-8. **Distill the key.** Reconcile with Cascade-style error correction, account for leakage, apply Toeplitz privacy amplification, and verify endpoint key agreement.
+1. **Describe the network :** Define active USER and REPEATER nodes, coordinates, fibre properties, memory, and BSM capacity. Choose two distinct users as endpoints.
+2. **Discover candidate paths :** Enumerate routes through repeaters. Users can be endpoints, but cannot act as intermediate repeaters.
+3. **Apply feasibility checks :** Reject paths that fail static resource requirements or fresh-pair QKD quality constraints.
+4. **Rank with Routing Policy :** Predict service reliability, delivery latency, and delivered visibility, then rank eligible candidates by useful quantum service.
+5. **Authenticate the selected route :** Perform fresh ML-DSA mutual authentication of the selected nodes and enforce quantum-execution eligibility.
+6. **Deliver end-to-end entanglement :** Generate elementary pairs, allocate memory, execute BSM swaps, and handle failures and expiry across the chosen heterogeneous route.
+7. **Collect a BBM92 block :** Measure delivered pairs using the biased basis policy, sift outcomes and estimate errors and extractable secret length.
+8. **Distill the key :** Reconcile with Cascade-style error correction, account for leakage, apply Toeplitz privacy amplification, and verify endpoint key agreement
 9. **Create the secure session.** Retain the successful key on the backend and allow AES-GCM messages in either direction.
 
 Authentication failure, infeasible resources, exhausted collection budgets, or unsuccessful distillation can prevent establishment. A routing prediction is an estimate; a session is established only after the actual execution succeeds.
@@ -133,11 +117,11 @@ The notebook records the project's progression, including earlier baselines and 
 
 | Phase | Purpose |
 |---|---|
-| **0 — Baseline** | Rebuild the point-to-point CrypTon QKD/key-generation and AES baseline. |
+| **0 — Baseline** | Rebuild the point-to-point [CrypTon QKD/key-generation and AES baseline](https://github.com/Vishesh-Goyal7/CrypTon). |
 | **1 — Distance effects** | Study photon attenuation, observed survival, key yield, key-generation time, and trial outcomes as distance changes. |
 | **2 — Single repeater** | Compare direct transmission with repeater-assisted delivery, then introduce non-ideal fidelity and swapping. |
 | **3 — Resource-aware network engine** | Introduce authenticated nodes, a discrete-event control plane, multiple repeaters, finite memory, swapping policies, decoherence, recovery, and integrated BBM92 distillation. |
-| **4 — Routing and calibration** | Build an operator testbed, validate paths, calculate metrics, collect calibration trajectories, fit service models, and implement Policy C. |
+| **4 — Routing and calibration** | Build an operator testbed, validate paths, calculate metrics, collect calibration trajectories, fit service models, and implement routing policy. |
 | **5 — End-to-end integration** | Combine discovery, ranking, authentication, heterogeneous execution, fallback, and secret-key establishment through `narad_qc_establish_key`. |
 | **6 — API exposure** | Add the notebook HTTP service and subsequent semantic, session, idempotency, access, parallel-worker, and progress updates. |
 | **React console + bridge** | Expose editable topologies, live execution telemetry, directional animation, and bidirectional encrypted messaging. |
@@ -148,7 +132,7 @@ The notebook records the project's progression, including earlier baselines and 
 
 A shorter route can still perform poorly if one fibre has low success probability, a repeater lacks memory, swapping repeatedly fails, or stored pairs lose fidelity before their neighbours become available. Adding repeaters also introduces resource and swapping costs.
 
-Policy C uses heterogeneous-path bottleneck features, including the longest elementary span, repeater count, and minimum multiplexed link-success probability. The calibration models estimate service success, conditional delivery latency, and delivered visibility. Its ranking follows:
+Routing policy uses heterogeneous-path bottleneck features, including the longest elementary span, repeater count, and minimum multiplexed link-success probability. The calibration models estimate service success, conditional delivery latency, and delivered visibility. Its ranking follows:
 
 $$
 S_C = \frac{p_{\mathrm{service}}}{T_{\mathrm{pair}\mid\mathrm{success}}}\;U_{\mathrm{quality}}
@@ -188,15 +172,19 @@ Moving arrows identify activity on highlighted fibres. Replies reverse the messa
 
 ## 🚀 Getting Started
 
+### Local backend / server hosting
+
+The notebook engine is converted to a standalone Python/FastAPI service in `backend/`. It preserves the GUI API, native workers/progress, and bidirectional AES messaging. Supply fitted calibration artifacts (export once from Colab or fit locally from the raw calibration CSV), configure the environment, and run Uvicorn or the supplied Docker Compose service. Server startup requires no Colab, Drive mount, notebook execution, or tunnel.
+
+The steps below describe the original Colab-hosted workflow.
+
 ### Prerequisites
 
-- A Google account and access to Google Colab for the notebook engine.
-- **Node.js 20.19+ or 22.12+** with npm for the Vite frontend.
-- The project's Drive datasets/checkpoints where required by the notebook's calibration and collection cells.
-- A browser with Web Crypto support for standalone demo messaging; localhost is suitable.
-- Python and the bridge requirements only if running backend tests locally. Colab supplies the notebook Python runtime.
-
-The Colab notebook and Google Drive resource links are provided separately in this repository's GitHub links/About area. The notebook source is also included here as [`NARAD_QC.ipynb`](NARAD_QC.ipynb).
+- **Git** to download the repository.
+- **Python 3.12**, including its `venv` and `pip` support.
+- **Node.js 20.19+ or 22.12+**, with npm.
+- A current browser.
+- The project's raw routing-calibration CSV, or a trusted pre-exported model bundle as explained in Step 4.
 
 ### 1 — Clone the repository
 
@@ -205,98 +193,191 @@ git clone https://github.com/Vishesh-Goyal7/NARAD-QC.git
 cd NARAD-QC
 ```
 
-### 2 — Start the React console
+### 2 — Set up the backend environment
 
 ```bash
-npm --prefix gui ci
-npm --prefix gui run dev
+python3.12 -m venv backend/.venv
+backend/.venv/bin/python -m pip install -r backend/requirements.lock.txt
 ```
 
-Open the local URL printed by Vite, normally **http://127.0.0.1:5173**.
+This creates a project specific Python environment and required dependency modules. 
+
+### 3 - Verify the backend is working properly
+
+```bash
+PYTHONPATH=backend backend/.venv/bin/python -m narad_backend --help
+```
+
+You should see `prepare-calibration`, `benchmark-workers`, and `serve`.
+
+### 4 - Prepare routing models
+
+The calibration csv files needed for this are available in the `backend/artifcats`. 
+
+```bash
+PYTHONPATH=backend backend/.venv/bin/python -m narad_backend prepare-calibration \
+  --csv backend/artifacts/phase4_calibration_raw.csv \
+  --output backend/artifacts/policy_c.joblib
+```
+
+This outputs 
+```text
+backend/artifacts/policy_c.joblib
+backend/artifacts/policy_c.json
+```
+which is available in the artifacts folder as well. You can use these files directly or create your own. 
+
+### 5 - Find appropriate CPU workers
+
+This is a machine dependent operation and helps to find the number of workers your machine can support parallely. It is a very important run, so make sure you don't skip this step. 
 
 The app initially runs in **demo mode**. You can edit a network, explore an illustrative protocol sequence, and exchange browser-encrypted messages without starting Colab. Demo routing is a local distance/multiplexing heuristic; it does not execute Policy C, ML-DSA authentication, the physical simulator, or BBM92.
 
-### 3 — Initialize the notebook engine in Colab
-
-1. Open a copy of `NARAD_QC.ipynb` in Colab and connect a runtime.
-2. Run the notebook's dependency installation and initialization cells in their intended order.
-3. Mount Google Drive when the notebook requests it. Make the linked resource files available at the paths used by the notebook, or adjust those paths to your own Drive layout.
-4. Initialize the Phase 3 engine and Phase 4 calibration/model dependencies, then the Phase 5 orchestrator and Phase 6 definitions/hardening cells.
-5. Run **Runtime Parallelism + Live QKD Telemetry** and **API Worker + Progress Wiring** before installing the GUI bridge.
-
-**Calibration prerequisite:** Policy C needs fitted models in the current Python runtime. The notebook can use an in-memory raw calibration dataframe or read `phase4_calibration_raw.csv`, normally from:
-
-```text
-/content/drive/MyDrive/NARAD_QC/checkpoints/
-└── phase4_routing_calibration/
-    └── phase4_calibration_raw.csv
-```
-
-Execute the associated dataset preparation, model-fitting, reliability calibration, and predictor definitions. The relevant final runtime objects include `PHASE4_FINAL_LATENCY_MODEL`, `PHASE4_FINAL_VISIBILITY_MODEL`, `PHASE4_FINAL_RELIABILITY_MODEL`, and `PHASE4_FINAL_RELIABILITY_CALIBRATOR`.
-
-The notebook contains long-running Monte Carlo studies and historical/commented demonstration cells. Running an experiment is separate from initializing its definitions. If saved calibration data is unavailable, generating it is an additional workload; simply starting the HTTP server does not reconstruct missing models.
-
-### 4 — Install the GUI bridge inside Colab
-
-Install its transport dependencies in a Colab cell:
-
-```python
-%pip install 'fastapi>=0.115,<1' 'pydantic>=2.9,<3' 'uvicorn>=0.30,<1'
-```
-
-The initialized notebook must also provide its cryptographic and numerical dependencies.
-
-Upload [`gui/backend/gui_bridge.py`](gui/backend/gui_bridge.py) to:
-
-```text
-/content/drive/MyDrive/NARAD_QC/gui_bridge.py
-```
-
-Alternatively, upload it to `/content/gui_bridge.py`. The supplied bootstrap prefers the Drive copy when both exist.
-
-Copy the contents of [`gui/backend/colab_cell.py`](gui/backend/colab_cell.py) into a Colab cell **after the initialization and parallel/progress cells**, then run it. It starts the GUI bridge on **127.0.0.1:8002** and prints its version. The current bridge version is **1.1.0**.
-
-This bridge needs the notebook's live Python namespace. Starting the bridge file as an independent server does not initialize quantum physics or calibration models. The original Phase 6 HTTP server is optional for GUI use.
-
-### 5 — Expose the bridge with a tunnel
-
-Use the notebook's cloudflared installation, then run in another Colab cell:
-
-```python
-!cloudflared tunnel --url http://127.0.0.1:8002
-```
-
-Keep the tunnel running and copy its generated HTTPS URL. Use the tunnel for **port 8002**, rather than a tunnel pointing at the notebook's legacy API port. Temporary tunnel URLs change when recreated.
-
-### 6 — Connect React to Colab
-
-1. Open **Connect notebook** in the console.
-2. Enter the tunnel's base HTTPS URL, without appending `/gui`.
-3. Enter the notebook runtime's `NARAD_API_ACCESS_KEY`.
-4. Select **Test & connect**.
-5. Confirm the connection, preview a route, and run the protocol.
-
-The console sends the access key in `X-NARAD-API-Key`. It retains it in tab memory, rather than saving it in localStorage, graph exports, or source files.
-
-For more transport details, custom frontend origins, and local-kernel integration, see the [GUI implementation guide](gui/README.md).
-
-### 7 — Build the frontend for hosting
+First, inspect the CPU capacity available to the process:
 
 ```bash
-npm --prefix gui run build
-npm --prefix gui run preview
+PYTHONPATH=backend backend/.venv/bin/python -c \
+  "from narad_backend.capacity import available_cpus; print('Available CPU capacity:', available_cpus())"
+```
+This tells you the number of CPU cores you have available. Then run the one-time benchmark:
+
+```bash
+# Example only
+# Workers means number of parallel workers the run will execute
+# Pairs is the number of pairs the calibration will use
+# Repeats is the number of repitition for every worker
+# Modes is the number of multiplexing modes you want to support
+PYTHONPATH=backend backend/.venv/bin/python -m narad_backend benchmark-workers \
+  --workers 1,2,4,8 --pairs 48 --repeats 1 \
+  --distance-km 600 --repeaters 6 --modes 8 \
+  --output backend/artifacts/workers.json
 ```
 
-The static build is emitted to `gui/dist`. If hosting on a different origin, configure that exact origin when installing the bridge:
+### 6 - Set a hard backend worker limit
 
-```python
-NARAD_GUI_APP = _bridge.install_gui_bridge(
-    globals(),
-    allowed_origins=["https://your-console.example"]
+The benchmark recommends a count. This step makes it an explicit backend configuration. Run the following **once**, after Step 5:
+
+```bash
+PYTHONPATH=backend backend/.venv/bin/python - <<'PY'
+import json
+import secrets
+from pathlib import Path
+from narad_backend.capacity import available_cpus
+
+path = Path('backend/.env')
+if path.exists():
+    raise SystemExit('backend/.env already exists. Edit it directly; this command will not overwrite your key.')
+
+profile = json.loads(Path('backend/artifacts/workers.json').read_text())
+if not profile.get('physics_equivalent'):
+    raise SystemExit('The worker benchmark did not confirm equivalent physics.')
+recommended = int(profile['recommended_workers'])
+if recommended < 1:
+    raise SystemExit('Invalid worker recommendation.')
+
+# Existing HTTP request contracts support up to 64 CPU workers.
+cap = min(recommended, available_cpus(), 64)
+path.write_text(
+    'NARAD_API_ACCESS_KEY=' + secrets.token_urlsafe(32) + '\n'
+    'NARAD_ALLOWED_ORIGINS=http://127.0.0.1:5173,http://localhost:5173\n'
+    'NARAD_CALIBRATION_PATH=backend/artifacts/policy_c.joblib\n'
+    'NARAD_WORKER_PROFILE=backend/artifacts/workers.json\n'
+    f'NARAD_CONTROLLER_MAX_CPU_WORKERS={cap}\n'
 )
+path.chmod(0o600)
+print(f'Created backend/.env with a hard CPU-worker cap of {cap}.')
+print('Your private API key is stored in that file.')
+PY
 ```
 
-The defaults allow localhost/127.0.0.1 on development port 5173 and preview port 4173. The tunnel URL is entered at runtime, so a rotated Colab URL does not require rebuilding React.
+This creates `backend/.env` with a random API key, local frontend origins, model/profile paths, and an explicit cap. 
+The hard-limit setting looks like this:
+
+```dotenv
+# Example: replace 4 with your chosen count, up to the recommended capacity.
+NARAD_CONTROLLER_MAX_CPU_WORKERS=4
+```
+You can change the number of workers if you want.
+
+### 7 - Start the backend — Terminal 1
+
+Make sure Terminal 1 is at the repository root, then run:
+
+```bash
+set -a && source backend/.env && set +a
+
+PYTHONPATH=backend backend/.venv/bin/python -m narad_backend serve \
+  --host 127.0.0.1 --port 8002
+```
+
+`source` loads your settings into the current terminal, and `set -a` exports them to the Python process. The backend does not automatically load `.env`. Only source your own trusted environment file.
+
+Wait for application startup and the Uvicorn listening message. Leave this terminal running.
+
+In your browser, open:
+
+```text
+http://127.0.0.1:8002/health
+http://127.0.0.1:8002/ready
+```
+
+The first confirms the service is alive; the second should report `ready: true` and its controller worker limit. These checks do not launch QKD.
+
+GUI API documentation is at `http://127.0.0.1:8002/docs`. The React app uses `/gui` endpoints automatically.
+
+### 8 - Install and run the frontend — Terminal 2
+
+Open a second terminal. Navigate to the same repository directory; for example, if you cloned under your home directory:
+
+```bash
+cd /NARAD-QC
+npm --prefix gui ci
+npm --prefix gui run dev -- --port 5173 --strictPort
+```
+
+The first command installs the frontend packages using its lockfile. The second starts React at a fixed port. `--strictPort` prevents Vite from silently changing to an origin your backend has not allowed.
+
+Open:
+
+```text
+http://127.0.0.1:5173
+```
+
+Keep Terminal 2 running as well. Both terminals are needed while testing.
+
+### 9 - Connect the frontend to the backend
+
+1. In the React app, choose **Demo Workspace**. The label also applies to the standalone server; no notebook needs to be running.
+2. Enter **`http://127.0.0.1:8002`** as the backend URL. Use the base URL without `/gui`, `/api`, or `/docs` or any other extensions.
+3. Open your local `backend/.env` in a text editor. Copy only the value after `NARAD_API_ACCESS_KEY=` into the API-key field.
+4. Select **Test & connect**.
+5. Confirm the app shows a connected backend and reports worker capacity.
+
+The API key authorises the research operator. Keep it private and out of committed files. If you restart with a different key, reconnect using the new value.
+
+Until this connection succeeds, the frontend remains in its labelled **demo mode**. Demo animations and demo-generated keys do not prove that the backend protocol ran.
+
+### 10. Troubleshooting
+
+| Problem | Action |
+|---|---|
+| `python3.12` or `node` is missing | Install the required prerequisite and reopen your terminal. |
+| Dependency installation fails | Confirm Python 3.12 and a supported OS; use the pinned backend lockfile. Follow any specific missing-library error from the installer. |
+| `No module named narad_backend` | Run from the repository root and include `PYTHONPATH=backend` exactly as shown. |
+| `Missing fitted Policy C artifact` | Complete Step 5 and verify both model files exist at the configured path. |
+| Calibration CSV is missing | Obtain it from the linked Drive resources or maintainer; a fresh clone does not include it. |
+| Model version/checksum mismatch | Refit from the original CSV in the pinned environment, or use the matching version and complete model/JSON pair from a trusted export. |
+| Worker report is missing | Complete Step 6, or remove the profile setting and explicitly configure a conservative cap of 1 until benchmarking. |
+| More workers requested than available | Use the capacity command from Step 6 and choose counts within it. |
+| Applied workers are fewer than requested | Check the hard cap, available CPU quota/affinity, quantum lanes, and any process-farm fallback. |
+| Server rejects API-key configuration | Generate a private random key; it must be at least 24 characters. Load `.env` in the same terminal that starts the backend. |
+| Frontend returns `401 Unauthorized` | Recopy the exact current key value, without `NARAD_API_ACCESS_KEY=` or surrounding whitespace. |
+| Port 5173 or 8002 is already in use | Stop the conflicting development server or choose another port and update the frontend URL/CORS configuration accordingly. |
+| CORS failure | `NARAD_ALLOWED_ORIGINS` must include the frontend's exact scheme, hostname, and port. Restart the backend after editing `.env`. |
+| Frontend stays in demo mode | Complete Test & connect; opening React alone does not connect the engine. |
+| No feasible route / establishment fails | Check active links, endpoint roles, memory, BSM settings, quality constraints, and pair budget. Begin with the supplied first-run chain. |
+| Forecast is full but messaging is disabled | Wait for actual successful key distillation and session creation; inspect logs for post-processing failure. |
+| Shutdown takes time | An active protocol job may still be finishing. Avoid treating a process restart as resumable simulation cancellation. |
 
 ---
 
@@ -382,65 +463,17 @@ Operational requests require `X-NARAD-API-Key`. Establishment submissions includ
 
 See [the payload example and API notes](gui/README.md#live-bridge-routes) for independent client integration. The notebook's legacy message handler is separate; the bidirectional inbox behavior described here belongs to the GUI bridge endpoints.
 
-## 🗂️ Repository Structure
-
-```text
-NARAD-QC/
-├── NARAD_QC.ipynb                  # Engine, experiments, calibration, orchestration, API
-├── README.md                      # Project overview and implementation guide
-├── Docs/
-│   └── NARAD-QC Logo.png
-├── Phase 1 Outputs/               # Distance effects: CSVs, Monte Carlo results, plots
-├── Phase 2A Outputs/              # Direct versus single-repeater experiments
-├── Phase 2B Outputs/              # Repeater-assisted key-generation output
-├── Phase 2C Outputs/              # Non-ideal single-repeater / basis-policy studies
-├── Phase 3/
-│   ├── Distance_Separation/        # Distance study: configs, trials, summaries, plots
-│   └── Repeater_Density/           # Repeater-count study and resource metrics
-├── References/                    # Research PDFs used during development
-└── gui/
-    ├── README.md                  # Detailed GUI/bridge integration notes
-    ├── examples/network.json      # Importable topology
-    ├── src/
-    │   ├── App.jsx                # Console state, jobs, canvas and workflow
-    │   ├── Telemetry.jsx          # Native progress and applied execution metrics
-    │   ├── PeerMessaging.jsx      # Two participant composers and inboxes
-    │   ├── api.js                 # Bridge HTTP client
-    │   ├── graph.js               # Graph operations and validation
-    │   ├── progress.js            # Progress interpretation and demo nonce allocation
-    │   └── styles.css             # Responsive console styling
-    ├── backend/
-    │   ├── gui_bridge.py          # FastAPI adapter inside the notebook runtime
-    │   ├── colab_cell.py          # Bootstrap / idle bridge replacement
-    │   ├── requirements.txt       # Bridge and local-test dependencies
-    │   └── tests/                 # HTTP, execution, telemetry and AES tests
-    ├── package.json
-    └── package-lock.json
-```
-
 ## 📊 Experiments and Verification
 
-The repository preserves research outputs across several stages:
+The repository preserves research outputs across several stages. These outputs belong to their individual experiment configurations. Earlier-phase plots are not automatically benchmarks of the latest routed GUI execution. Consult the accompanying configuration and raw/summary files when comparing results.
 
-| Study | Artifacts |
-|---|---|
-| Distance-dependent direct transmission | [Phase 1 outputs](Phase%201%20Outputs/) |
-| Direct versus single-repeater delivery | [Phase 2A outputs](Phase%202A%20Outputs/) |
-| Repeater-assisted key generation | [Phase 2B outputs](Phase%202B%20Outputs/) |
-| Non-ideal swapping and basis-policy sweeps | [Phase 2C outputs](Phase%202C%20Outputs/) |
-| Multi-repeater distance separation | [Phase 3 distance study](Phase%203/Distance_Separation/) |
-| Repeater density and resource demand | [Phase 3 repeater study](Phase%203/Repeater_Density/) |
-
-These outputs belong to their individual experiment configurations. Earlier-phase plots are not automatically benchmarks of the latest routed GUI execution. Consult the accompanying configuration and raw/summary files when comparing results.
-
-### Run the GUI checks
+## Run the GUI checks
 
 ```bash
 npm --prefix gui test
 npm --prefix gui run build
 
 python3 -m venv gui/.venv
-# macOS / Linux
 gui/.venv/bin/python -m pip install -r gui/backend/requirements.txt
 gui/.venv/bin/python -m unittest discover -s gui/backend/tests -v
 ```
@@ -451,48 +484,18 @@ The recorded **19 October 2026** verification includes **9 frontend tests**, **1
 
 Backend integration and browser transport checks use fixture quantum trajectories with actual AES-GCM. They do not replace a fresh complete physical/QKD run in Colab. See the [GUI verification instructions](gui/README.md#verification) to reproduce the local checks.
 
-## 🛠️ Troubleshooting
-
-| Symptom | What to check |
-|---|---|
-| Console remains in demo mode | Open Connect notebook, supply the current bridge tunnel URL and runtime access key, then test the connection. |
-| Unauthorized response | Use the current runtime's `NARAD_API_ACCESS_KEY`; restarting Colab can invalidate the previous runtime state. |
-| Bridge cannot find notebook objects | Initialize the required engine, fitted calibration models, orchestrator, and later patches before running the bootstrap. |
-| Missing calibration CSV | Mount Drive and match the notebook's input path to the provided resource dataset, or generate the calibration data. |
-| Connection works but native workers/progress are unavailable | Run the two new parallel/progress cells, replace the uploaded bridge file, and rerun the bootstrap. Health should report bridge 1.1.0 with native worker/progress support. |
-| An old bridge keeps loading | Replace `/content/drive/MyDrive/NARAD_QC/gui_bridge.py`; that copy takes precedence over `/content/gui_bridge.py`. |
-| Browser reports CORS/connection failure | Check that the tunnel targets port 8002 and the frontend origin is included in the bridge's allowed origins. |
-| Fewer workers than requested | Inspect applied values and runtime/controller limits. A single lane uses one worker; farm fallback may use direct execution. |
-| Forecast reaches 100% but no chat session appears | Wait for actual post-processing and final establishment; inspect logs if reconciliation or distillation fails. |
-| No executable route | Review active links, endpoint roles, hop limits, memory/BSM resources, and predicted delivered quality. |
-| Polling disconnects during a run | Restore the tunnel/connection and resume monitoring the existing job. |
-
-When updating an existing bridge, let active jobs finish first. The bootstrap can replace an idle server, but replacing it clears old bridge sessions and jobs. Reconnect the console afterward.
-
-## 🔎 Design Boundaries
-
-- **Runtime state is temporary.** Restarting Colab clears jobs, sessions, keys, and inboxes. Reloading the browser clears its tab state.
-- **Research predictions have a domain.** Service calibration and physical abstractions do not guarantee success for arbitrary topologies or hardware settings.
-- **Progress is observational.** Events may be sampled, forecasts can change, and no whole-protocol physical completion ETA is promised.
-- **Interactive workload is bounded.** The bridge permits up to 24 nodes, 48 fibres, 12 hops, four pending jobs, 16,000 UTF-8 bytes per message, and the latest 200 ciphertext deliveries per session. Dense route searches can still be expensive.
-- **Ending a session is different from cancelling computation.** There is no hard cancellation of an in-flight notebook simulation.
-- **The API key authorizes operators.** It is not a per-participant identity system. Keep it out of committed files and public frontend builds.
-
-## 📃 License
-
-This repository currently has no dedicated license file. Refer to any license added by the maintainer for reuse and distribution terms.
-
 ## 🙋‍♂️ Author
 
 NARAD-QC grew from the question of how to take a working point-to-point quantum-key experiment and turn it into a network that must choose routes, manage finite resources, authenticate its nodes, and still deliver enough useful entanglement to communicate.
 
-If the project helped you explore quantum networking, inspired an experiment, or raised a useful question, feel free to ⭐ the repository or get in touch.
+If the project helped you explore quantum networking, inspired an experiment, made you think, or raised a useful question, feel free to ⭐ the repository and get in touch. And until next time, stay curious.
 
 **Vishesh Goyal**  
-[Mail](mailto:visheshvishu1@outlook.com) · [GitHub](https://github.com/Vishesh-Goyal7) · [LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) · [Portfolio](https://visheshverse.com)
-
-Stay curious.
+[Mail](mailto:visheshvishu1@outlook.com) 
+[GitHub](https://github.com/Vishesh-Goyal7) 
+[LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) 
+[Portfolio](https://visheshverse.com)
 
 ---
 
-<p align="center">Developed and Maintained by <a href="https://visheshverse.com">VisheshVerse</a></p>
+<p align="center">Developed by <a href="https://visheshverse.com">VisheshVerse</a></p>

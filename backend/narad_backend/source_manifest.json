@@ -1,0 +1,827 @@
+{
+  "notebook_sha256": "9b1079f88b32d6eb6babd2dc9c4995e7f51ecd918af35e22ca0bbe30c7d75cce",
+  "cells": [
+    {
+      "index": 7,
+      "module": "engine.py",
+      "title": "# @title AES-GCM Engine",
+      "statements": 2
+    },
+    {
+      "index": 13,
+      "module": "engine.py",
+      "title": "# @title Accumulate Session Key",
+      "statements": 1
+    },
+    {
+      "index": 86,
+      "module": "engine.py",
+      "title": "# @title Simulation Event Record",
+      "statements": 4
+    },
+    {
+      "index": 87,
+      "module": "engine.py",
+      "title": "# @title Simulation Kernel",
+      "statements": 4
+    },
+    {
+      "index": 89,
+      "module": "engine.py",
+      "title": "# @title Quantum Network Node",
+      "statements": 4
+    },
+    {
+      "index": 91,
+      "module": "engine.py",
+      "title": "# @title Quantum Link Redefined",
+      "statements": 5
+    },
+    {
+      "index": 93,
+      "module": "engine.py",
+      "title": "# @title Quantum Memory Errors and Local Entanglement Half",
+      "statements": 8
+    },
+    {
+      "index": 94,
+      "module": "engine.py",
+      "title": "# @title Quantum Memory Runtime State",
+      "statements": 1
+    },
+    {
+      "index": 96,
+      "module": "engine.py",
+      "title": "# @title Global Entanglement Resource Model",
+      "statements": 12
+    },
+    {
+      "index": 97,
+      "module": "engine.py",
+      "title": "# @title Global Entanglement Manager",
+      "statements": 1
+    },
+    {
+      "index": 99,
+      "module": "engine.py",
+      "title": "# @title Physical Network Topology",
+      "statements": 10
+    },
+    {
+      "index": 101,
+      "module": "engine.py",
+      "title": "# @title ML-DSA Cryptographic Provider",
+      "statements": 11
+    },
+    {
+      "index": 102,
+      "module": "engine.py",
+      "title": "# @title Public ML-DSA Device Identity",
+      "statements": 1
+    },
+    {
+      "index": 103,
+      "module": "engine.py",
+      "title": "# @title Simulated Hardware Security Module",
+      "statements": 1
+    },
+    {
+      "index": 104,
+      "module": "engine.py",
+      "title": "# @title Cryptographic Randomness",
+      "statements": 1
+    },
+    {
+      "index": 106,
+      "module": "engine.py",
+      "title": "# @title Control-Plane Trust Records and Errors",
+      "statements": 9
+    },
+    {
+      "index": 107,
+      "module": "engine.py",
+      "title": "# @title Physical Node Device Runtime",
+      "statements": 1
+    },
+    {
+      "index": 108,
+      "module": "engine.py",
+      "title": "# @title The big player is born \u2014 Classical Control Plane Foundation",
+      "statements": 1
+    },
+    {
+      "index": 110,
+      "module": "engine.py",
+      "title": "# @title Mutual Authentication Protocol Records",
+      "statements": 24
+    },
+    {
+      "index": 111,
+      "module": "engine.py",
+      "title": "# @title Node-Side Mutual Authentication Client",
+      "statements": 2
+    },
+    {
+      "index": 112,
+      "module": "engine.py",
+      "title": "# @title Control-Plane Mutual Authentication Service",
+      "statements": 2
+    },
+    {
+      "index": 114,
+      "module": "engine.py",
+      "title": "# @title Quantum Network Simulator",
+      "statements": 5
+    },
+    {
+      "index": 115,
+      "module": "engine.py",
+      "title": "# @title Linear Chain Topology Builder",
+      "statements": 1
+    },
+    {
+      "index": 120,
+      "module": "engine.py",
+      "title": "# @title Elementary Entanglement Physical Model",
+      "statements": 10
+    },
+    {
+      "index": 121,
+      "module": "engine.py",
+      "title": "# @title Elementary Entanglement Attempt Record",
+      "statements": 1
+    },
+    {
+      "index": 122,
+      "module": "engine.py",
+      "title": "# @title Elementary Entanglement Runtime Statistics",
+      "statements": 1
+    },
+    {
+      "index": 123,
+      "module": "engine.py",
+      "title": "# @title Elementary Entanglement Single-Attempt Service",
+      "statements": 1
+    },
+    {
+      "index": 125,
+      "module": "engine.py",
+      "title": "# @title Elementary Link Generation Process State",
+      "statements": 10
+    },
+    {
+      "index": 126,
+      "module": "engine.py",
+      "title": "# @title  Elementary Link Generation Process",
+      "statements": 1
+    },
+    {
+      "index": 128,
+      "module": "engine.py",
+      "title": "# @title Parallel Generation Slot Record",
+      "statements": 3
+    },
+    {
+      "index": 129,
+      "module": "engine.py",
+      "title": "# @title Parallel Elementary Generation Scheduler",
+      "statements": 1
+    },
+    {
+      "index": 132,
+      "module": "engine.py",
+      "title": "# @title  Age-Preserving Quantum Memory Rebinding",
+      "statements": 2
+    },
+    {
+      "index": 133,
+      "module": "engine.py",
+      "title": "# @title  Atomic Entanglement Swap Resource Transaction",
+      "statements": 3
+    },
+    {
+      "index": 134,
+      "module": "engine.py",
+      "title": "# @title  Entanglement Fidelity Registry",
+      "statements": 2
+    },
+    {
+      "index": 135,
+      "module": "engine.py",
+      "title": "# @title  Entanglement Swapping Physics Models",
+      "statements": 4
+    },
+    {
+      "index": 136,
+      "module": "engine.py",
+      "title": "# @title  Atomic Entanglement Swap Engine",
+      "statements": 2
+    },
+    {
+      "index": 139,
+      "module": "engine.py",
+      "title": "# @title Paper-Inspired Atomic BSM Model",
+      "statements": 5
+    },
+    {
+      "index": 142,
+      "module": "engine.py",
+      "title": "# @title  Parallel Swap Candidate Representation",
+      "statements": 7
+    },
+    {
+      "index": 143,
+      "module": "engine.py",
+      "title": "# @title  Max-Parallel Oldest-First Swap Policy",
+      "statements": 1
+    },
+    {
+      "index": 144,
+      "module": "engine.py",
+      "title": "# @title Parallel Swap Round Record",
+      "statements": 1
+    },
+    {
+      "index": 145,
+      "module": "engine.py",
+      "title": "# @title  Control-Plane Parallel Swap Candidate Scheduler",
+      "statements": 1
+    },
+    {
+      "index": 148,
+      "module": "engine.py",
+      "title": "# @title  Werner-State Physical Fidelity Profile",
+      "statements": 5
+    },
+    {
+      "index": 149,
+      "module": "engine.py",
+      "title": "# @title  Dynamic Physical Fidelity Registry",
+      "statements": 1
+    },
+    {
+      "index": 150,
+      "module": "engine.py",
+      "title": "# @title  Werner-State Physical Atomic BSM Model",
+      "statements": 1
+    },
+    {
+      "index": 153,
+      "module": "engine.py",
+      "title": "# @title Failure-Aware Elementary Demand State",
+      "statements": 9
+    },
+    {
+      "index": 154,
+      "module": "engine.py",
+      "title": "# @title  Failure-Aware Elementary Demand Controller",
+      "statements": 1
+    },
+    {
+      "index": 156,
+      "module": "engine.py",
+      "title": "# @title  Failure-Aware End-to-End Execution Records",
+      "statements": 6
+    },
+    {
+      "index": 157,
+      "module": "engine.py",
+      "title": "# @title  Autonomous Failure-Aware End-to-End Orchestrator",
+      "statements": 1
+    },
+    {
+      "index": 159,
+      "module": "engine.py",
+      "title": "# @title Benchmark Swapping Policies",
+      "statements": 6
+    },
+    {
+      "index": 177,
+      "module": "engine.py",
+      "title": "# @title  Fixed-600-km Repeater Density Sweep Configuration",
+      "statements": 12
+    },
+    {
+      "index": 179,
+      "module": "engine.py",
+      "title": "# @title Variable-Repeater Policy Factory",
+      "statements": 1
+    },
+    {
+      "index": 180,
+      "module": "engine.py",
+      "title": "# @title Variable-Density 600-km NARAD-QC Stack",
+      "statements": 1
+    },
+    {
+      "index": 197,
+      "module": "engine.py",
+      "title": "# @title QKD Quality Mathematics and Budget Configuration",
+      "statements": 12
+    },
+    {
+      "index": 198,
+      "module": "engine.py",
+      "title": "# @title QKD Resource / Frontier Quality Assessment",
+      "statements": 5
+    },
+    {
+      "index": 200,
+      "module": "engine.py",
+      "title": "# @title Live NARAD-QC Quality Snapshot",
+      "statements": 4
+    },
+    {
+      "index": 201,
+      "module": "engine.py",
+      "title": "# @title Safe Quality-Expiration Candidate Detection",
+      "statements": 1
+    },
+    {
+      "index": 202,
+      "module": "engine.py",
+      "title": "# @title Public Lifecycle Adapters",
+      "statements": 6
+    },
+    {
+      "index": 204,
+      "module": "engine.py",
+      "title": "# @title QKD Quality-Aware Resource Lifecycle Controller",
+      "statements": 3
+    },
+    {
+      "index": 206,
+      "module": "engine.py",
+      "title": "# @title Exact Minimum-Cost Collective QKD Quality Recovery Planner",
+      "statements": 10
+    },
+    {
+      "index": 208,
+      "module": "engine.py",
+      "title": "# @title Selective Collective-Quality Recovery Lifecycle Controller",
+      "statements": 8
+    },
+    {
+      "index": 211,
+      "module": "engine.py",
+      "title": "# @title Autonomous QKD-Ready Execution Records",
+      "statements": 7
+    },
+    {
+      "index": 212,
+      "module": "engine.py",
+      "title": "# @title Autonomous QKD-Ready End-to-End Orchestrator",
+      "statements": 1
+    },
+    {
+      "index": 214,
+      "module": "engine.py",
+      "title": "# @title Explicit Physical Timing Calibration Model",
+      "statements": 7
+    },
+    {
+      "index": 217,
+      "module": "engine.py",
+      "title": "# @title Continuous Modeled-Physical-Time Ledger",
+      "statements": 5
+    },
+    {
+      "index": 218,
+      "module": "engine.py",
+      "title": "# @title Continuous-Time Physical Fidelity Registry",
+      "statements": 1
+    },
+    {
+      "index": 220,
+      "module": "engine.py",
+      "title": "# @title Public Entanglement-Manager Expiration Transition",
+      "statements": 2
+    },
+    {
+      "index": 221,
+      "module": "engine.py",
+      "title": "# @title Physical-Time Quantum-Memory Lifetime Controller",
+      "statements": 7
+    },
+    {
+      "index": 223,
+      "module": "engine.py",
+      "title": "# @title Physical-Time-Compatible Swap Policy + Barrier-Aware Elementary Fidelity Checkpoints",
+      "statements": 7
+    },
+    {
+      "index": 224,
+      "module": "engine.py",
+      "title": "# @title Fully Physical-Timed Autonomous QKD Orchestrator",
+      "statements": 3
+    },
+    {
+      "index": 225,
+      "module": "engine.py",
+      "title": "# @title Real Physically Timed NARAD-QC Stack + 600-km / R6 Experiment",
+      "statements": 2
+    },
+    {
+      "index": 226,
+      "module": "engine.py",
+      "title": "# @title Bug Repatch",
+      "statements": 2
+    },
+    {
+      "index": 228,
+      "module": "engine.py",
+      "title": "# @title Explicit Elementary-Link Multiplexing Data Model",
+      "statements": 6
+    },
+    {
+      "index": 229,
+      "module": "engine.py",
+      "title": "# @title Multiplexed Elementary Entanglement Service",
+      "statements": 1
+    },
+    {
+      "index": 231,
+      "module": "engine.py",
+      "title": "# @title Multiplexed Physical-Time NARAD-QC Stack",
+      "statements": 1
+    },
+    {
+      "index": 232,
+      "module": "engine.py",
+      "title": "# @title Multiplexed Physical-Layer Accounting",
+      "statements": 3
+    },
+    {
+      "index": 234,
+      "module": "engine.py",
+      "title": "# @title Multiplexing-Aware Collective Recovery Planner",
+      "statements": 1
+    },
+    {
+      "index": 235,
+      "module": "engine.py",
+      "title": "# @title Install Multiplexing-Aware Recovery into a Stack",
+      "statements": 1
+    },
+    {
+      "index": 238,
+      "module": "engine.py",
+      "title": "# @title QKD Consumption Lifecycle + Entanglement-Based Measurement Record",
+      "statements": 8
+    },
+    {
+      "index": 239,
+      "module": "engine.py",
+      "title": "# @title Werner Bell-Pair Measurement Model + NARAD Entanglement-Based QKD Channel",
+      "statements": 2
+    },
+    {
+      "index": 241,
+      "module": "engine.py",
+      "title": "# @title 80:20 Biased-Basis BBM92 Block Configuration",
+      "statements": 10
+    },
+    {
+      "index": 242,
+      "module": "engine.py",
+      "title": "# @title Repeat NARAD Delivery Until BBM92 Block Is Distillable",
+      "statements": 1
+    },
+    {
+      "index": 243,
+      "module": "engine.py",
+      "title": "# @title Cascade-Style Error Reconciliation With Leakage Accounting",
+      "statements": 3
+    },
+    {
+      "index": 244,
+      "module": "engine.py",
+      "title": "# @title Privacy Amplification + Complete 128-bit NARAD-QC Session",
+      "statements": 3
+    },
+    {
+      "index": 246,
+      "module": "engine.py",
+      "title": "# @title Persistent QKD Pair Checkpoint",
+      "statements": 1
+    },
+    {
+      "index": 253,
+      "module": "engine.py",
+      "title": "# @title Semantics-Preserving Fast Execution Core",
+      "statements": 10
+    },
+    {
+      "index": 254,
+      "module": "engine.py",
+      "title": "# @title Fast Execution Profile + Stack Builder",
+      "statements": 4
+    },
+    {
+      "index": 256,
+      "module": "engine.py",
+      "title": "# @title  Resource-Bounded Multi-Pair Hardware Lanes",
+      "statements": 9
+    },
+    {
+      "index": 258,
+      "module": "engine.py",
+      "title": "# @title Work-Conserving Asynchronous Quantum Lanes",
+      "statements": 9
+    },
+    {
+      "index": 262,
+      "module": "engine.py",
+      "title": "# @title Configurable BBM92 Distillation",
+      "statements": 2
+    },
+    {
+      "index": 276,
+      "module": "engine.py",
+      "title": "# @title Operator-Controlled Routing Hardware Profiles",
+      "statements": 13
+    },
+    {
+      "index": 277,
+      "module": "engine.py",
+      "title": "# @title Operator-Controlled Quantum Network Builder",
+      "statements": 1
+    },
+    {
+      "index": 282,
+      "module": "engine.py",
+      "title": "# @title  Quantum Path Discovery Types",
+      "statements": 7
+    },
+    {
+      "index": 283,
+      "module": "engine.py",
+      "title": "# @title Quantum Route Identification Helpers",
+      "statements": 3
+    },
+    {
+      "index": 284,
+      "module": "engine.py",
+      "title": "# @title  Enumerate All Simple Physical Paths",
+      "statements": 1
+    },
+    {
+      "index": 285,
+      "module": "engine.py",
+      "title": "# @title  Filter Repeater-Only Candidate Routes",
+      "statements": 2
+    },
+    {
+      "index": 291,
+      "module": "engine.py",
+      "title": "# @title Candidate Path Metric Record",
+      "statements": 4
+    },
+    {
+      "index": 292,
+      "module": "engine.py",
+      "title": "# @title Frozen Routing Metric Configuration",
+      "statements": 2
+    },
+    {
+      "index": 293,
+      "module": "engine.py",
+      "title": "# @title  Elementary Link Routing Metrics",
+      "statements": 1
+    },
+    {
+      "index": 294,
+      "module": "engine.py",
+      "title": "# @title Fresh Path Werner Quality Predictor",
+      "statements": 1
+    },
+    {
+      "index": 295,
+      "module": "engine.py",
+      "title": "# @title Path Resource Bottleneck Metrics",
+      "statements": 1
+    },
+    {
+      "index": 296,
+      "module": "engine.py",
+      "title": "# @title  Entanglement Delivery-Time Proxy",
+      "statements": 1
+    },
+    {
+      "index": 297,
+      "module": "engine.py",
+      "title": "# @title  Memory Coherence Exposure Cost",
+      "statements": 1
+    },
+    {
+      "index": 298,
+      "module": "engine.py",
+      "title": "# @title  Complete Candidate Path Metric Evaluator",
+      "statements": 1
+    },
+    {
+      "index": 386,
+      "module": "engine.py",
+      "title": "# @title Policy C: Empirically Calibrated Quantum-Service Routing",
+      "statements": 11
+    },
+    {
+      "index": 388,
+      "module": "engine.py",
+      "title": "# @title NARAD-QC \u2014 COMPLETE END-TO-END KEY ESTABLISHMENT API",
+      "statements": 24
+    },
+    {
+      "index": 393,
+      "module": "transport.py",
+      "title": "# @title NARAD-QC \u2014 FastAPI Service Layer",
+      "statements": 36
+    },
+    {
+      "index": 394,
+      "module": "transport.py",
+      "title": "# @title  Core Semantic Hardening",
+      "statements": 15
+    },
+    {
+      "index": 396,
+      "module": "transport.py",
+      "title": "# @title   Runtime and Session Hardening",
+      "statements": 17
+    },
+    {
+      "index": 398,
+      "module": "transport.py",
+      "title": "# @title  API Contract Hardening",
+      "statements": 18
+    },
+    {
+      "index": 400,
+      "module": "transport.py",
+      "title": "# @title  Establishment Safety and Idempotency",
+      "statements": 23
+    },
+    {
+      "index": 402,
+      "module": "transport.py",
+      "title": "# @title  HTTP Access Boundary Hardening",
+      "statements": 16
+    },
+    {
+      "index": 405,
+      "module": "transport.py",
+      "title": "# @title  Runtime Parallelism + Live QKD Telemetry",
+      "statements": 30
+    },
+    {
+      "index": 406,
+      "module": "transport.py",
+      "title": "# @title API Worker + Progress Wiring",
+      "statements": 14
+    },
+    {
+      "index": 265,
+      "module": "farm.py",
+      "title": "# @title CPU Trajectory-Farm Benchmark Configuration",
+      "statements": 18
+    },
+    {
+      "index": 266,
+      "module": "farm.py",
+      "title": "# @title  Persistent CPU Trajectory Farm",
+      "statements": 6
+    },
+    {
+      "index": 267,
+      "module": "farm.py",
+      "title": "# @title  Strict Trajectory Equivalence Checker",
+      "statements": 2
+    },
+    {
+      "index": 304,
+      "module": "fitting.py",
+      "title": "# @title Empirical Routing Calibration Design",
+      "statements": 15
+    },
+    {
+      "index": 323,
+      "module": "fitting.py",
+      "title": "# @title Canonical Delivery Outcome",
+      "statements": 7
+    },
+    {
+      "index": 325,
+      "module": "fitting.py",
+      "title": "# @title  Wilson Success-Probability Interval",
+      "statements": 2
+    },
+    {
+      "index": 326,
+      "module": "fitting.py",
+      "title": "# @title  Configuration Summary Builder",
+      "statements": 1
+    },
+    {
+      "index": 327,
+      "module": "fitting.py",
+      "title": "# @title  Improved Calibration Summary",
+      "statements": 1
+    },
+    {
+      "index": 343,
+      "module": "fitting.py",
+      "title": "# @title  Cross-Validated Calibration Models: Setup",
+      "statements": 15
+    },
+    {
+      "index": 344,
+      "module": "fitting.py",
+      "title": "# @title Prepare Latency and Visibility-Loss Datasets",
+      "statements": 3
+    },
+    {
+      "index": 345,
+      "module": "fitting.py",
+      "title": "# @title  Candidate Regression Models",
+      "statements": 1
+    },
+    {
+      "index": 346,
+      "module": "fitting.py",
+      "title": "# @title  Cross-Validated Regression Evaluator",
+      "statements": 1
+    },
+    {
+      "index": 347,
+      "module": "fitting.py",
+      "title": "# @title  Cross-Validated Latency Models",
+      "statements": 6
+    },
+    {
+      "index": 348,
+      "module": "fitting.py",
+      "title": "# @title  Cross-Validated Visibility-Loss Models",
+      "statements": 1
+    },
+    {
+      "index": 349,
+      "module": "fitting.py",
+      "title": "# @title  Prepare Reliability Dataset",
+      "statements": 2
+    },
+    {
+      "index": 350,
+      "module": "fitting.py",
+      "title": "# @title  Reliability Candidate Models",
+      "statements": 1
+    },
+    {
+      "index": 351,
+      "module": "fitting.py",
+      "title": "# @title  Grouped Reliability Cross Validation",
+      "statements": 2
+    },
+    {
+      "index": 352,
+      "module": "fitting.py",
+      "title": "# @title  Configuration-Level Reliability Calibration",
+      "statements": 6
+    },
+    {
+      "index": 353,
+      "module": "fitting.py",
+      "title": "# @title  Select Cross-Validated Winning Models",
+      "statements": 3
+    },
+    {
+      "index": 354,
+      "module": "fitting.py",
+      "title": "# @title  Fit Final Calibration Models",
+      "statements": 8
+    },
+    {
+      "index": 360,
+      "module": "fitting.py",
+      "title": "# @title Reliability Calibration Setup",
+      "statements": 14
+    },
+    {
+      "index": 361,
+      "module": "fitting.py",
+      "title": "# @title  Reliability Calibration Dataset",
+      "statements": 5
+    },
+    {
+      "index": 362,
+      "module": "fitting.py",
+      "title": "# @title  Platt Probability Calibrator",
+      "statements": 1
+    },
+    {
+      "index": 372,
+      "module": "fitting.py",
+      "title": "# @title  Fit Final Calibrated Reliability Model",
+      "statements": 9
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    init: true
+    env_file: .env
+    environment:
+      NARAD_CALIBRATION_PATH: /app/backend/artifacts/policy_c.joblib
+      NARAD_WORKER_PROFILE: /app/backend/artifacts/workers.json
+    volumes:
+      - ./artifacts:/app/backend/artifacts:ro
+    ports:
+      - "127.0.0.1:8002:8002"
+    stop_grace_period: 10m
+    restart: unless-stopped

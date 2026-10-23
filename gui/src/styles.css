@@ -1969,3 +1969,71 @@ h1 {
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+/* VisheshVerse / NARAD-QC identity, shared by the intro and persistent footer. */
+:root { --developer-footer-height: 46px; }
+.console-content { padding-bottom: var(--developer-footer-height); }
+.console-content .rail { bottom: var(--developer-footer-height); }
+.developer-footer {
+  position: fixed;
+  inset: auto 0 0;
+  height: var(--developer-footer-height);
+  z-index: 45;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  color: #687b96;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: .35px;
+}
+.footer-credit { grid-column: 2; margin: 0; white-space: nowrap; }
+.footer-credit a, .splash-credit a { color: var(--blue); font-weight: 700; text-decoration: none; }
+.footer-credit a:hover, .splash-credit a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-email { justify-self: end; color: #687b96; text-decoration: none; white-space: nowrap; }
+.footer-email:hover { color: var(--blue); }
+.developer-footer a:focus-visible, .brand-splash a:focus-visible, .splash-enter:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 5px; border-radius: 2px;
+}
+.console-content .toast { bottom: calc(var(--developer-footer-height) + 20px); }
+.brand-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: auto;
+  background: radial-gradient(ellipse at 50% 43%, #ffffff 0%, #f0f5ff 55%, #e8f0fc 100%);
+  color: var(--ink);
+}
+.splash-content { padding: 64px 24px 100px; text-align: center; animation: brand-arrive .65s ease-out both; }
+.splash-logos { display: flex; align-items: center; justify-content: center; gap: 35px; }
+.splash-logos img { object-fit: contain; max-width: 32vw; height: 180px; border-radius: 16px; box-shadow: 0 12px 40px #377dff20; }
+.splash-divider { height: 92px; width: 1px; background: linear-gradient(transparent, #377dff66, transparent); }
+.splash-credit { margin: 38px 0 24px; font: 500 24px/1.5 "Space Grotesk", "DM Sans", sans-serif; letter-spacing: .3px; }
+.splash-accent { display: block; margin: auto; width: 62px; height: 1px; background: var(--blue); }
+.splash-enter {
+  position: absolute; bottom: max(34px, env(safe-area-inset-bottom));
+  border: 1px solid #377dff40; border-radius: 20px;
+  color: #687b96; background: #ffffff;
+  padding: 10px 18px; font-size: 12px; letter-spacing: .4px;
+}
+.splash-enter:hover { background: #eaf1ff; color: var(--blue); }
+.splash-enter span { margin-left: 12px; }
+@keyframes brand-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 680px) {
+  :root { --developer-footer-height: 68px; }
+  .developer-footer { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 8px 16px; font-size: 12px; }
+  .footer-credit { align-self: center; }
+  .footer-email { align-self: flex-end; font-size: 11px; }
+  .splash-logos { gap: 20px; }
+  .splash-logos img { width: 120px; height: 120px; }
+  .splash-divider { height: 65px; }
+  .splash-credit { font-size: 19px; margin-top: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .splash-content { animation: none; } }
