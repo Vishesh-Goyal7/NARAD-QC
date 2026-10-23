@@ -40,11 +40,7 @@ The resulting key powers a **bidirectional AES-GCM session**. Alice can message 
 - [Running an experiment](#-running-an-experiment)
 - [Parallel execution and progress](#-parallel-execution-and-progress)
 - [Bidirectional messaging](#-bidirectional-messaging)
-- [API integration](#-api-integration)
-- [Repository structure](#-repository-structure)
 - [Experiments and verification](#-experiments-and-verification)
-- [Troubleshooting](#-troubleshooting)
-- [Design boundaries](#-design-boundaries)
 - [Author](#-author)
 
 ---
