@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Docs/NARAD-QC_20Logo.png" alt="NARAD-QC logo" width="200">
+  <img src="Docs/NARAD-QC_Logo.png" alt="NARAD-QC logo" width="200">
 </p>
 
 <h1 align="center">NARAD-QC</h1>
