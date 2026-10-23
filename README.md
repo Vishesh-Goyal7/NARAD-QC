@@ -487,13 +487,7 @@ NARAD-QC grew from the question of how to take a working point-to-point quantum-
 If the project helped you explore quantum networking, inspired an experiment, made you think, or raised a useful question, feel free to ⭐ the repository and get in touch. And until next time, stay curious.
 
 **Vishesh Goyal**  
-[Mail](mailto:visheshvishu1@outlook.com) 
-
-[Portfolio](https://visheshverse.com)
-
-[GitHub](https://github.com/Vishesh-Goyal7) 
-
-[LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) 
+[Mail](mailto:visheshvishu1@outlook.com) | [Portfolio](https://visheshverse.com) | [GitHub](https://github.com/Vishesh-Goyal7) | [LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) 
 ---
 
 <p align="center">Developed by <a href="https://visheshverse.com">VisheshVerse</a></p>
