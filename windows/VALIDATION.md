@@ -33,3 +33,11 @@ On a Windows x64 machine:
 6. Check PowerShell exit/restart behavior and any hosting reverse proxy on that host.
 
 The PowerShell scripts have been reviewed here but not executed in PowerShell or on Windows. Native-host acceptance remains necessary. The implementation adds Windows support without claiming a Windows-host run that did not occur.
+
+### Shared lifecycle regression
+
+The backend process suite now contains five checks, including a POSIX regression for inherited Uvicorn SIGTERM handlers. The initializer restores default worker termination handling; it does not change physics, scheduling, or parent signal handling. That POSIX-only check skips on Windows, alongside fork parity. Spawn parity remains covered.
+
+### Collection graph
+
+The Windows launcher uses the same `gui` source as macOS, including the three live collection lines and their matching shaded areas (total pairs, ZZ bits and XX bits). The count axis starts at 0–700 and expands above 700; the time axis starts at 0–120 seconds and expands for longer runs. No separate Windows frontend build or source copy is required. All 13 shared frontend tests and the production build passed on macOS after these changes; native Windows visual acceptance remains pending.

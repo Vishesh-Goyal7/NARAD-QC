@@ -55,6 +55,7 @@ import {
 } from "./graph";
 import { apiRequest, toBase64, fromBase64 } from "./api";
 import Telemetry from "./Telemetry";
+import { appendCollectionSample } from "./collectionHistory";
 import PeerMessaging from "./PeerMessaging";
 import { createNonceState, nextSessionNonce } from "./progress";
 const uid = () => crypto.randomUUID();
@@ -519,6 +520,7 @@ export default function App() {
     [connecting, setConnecting] = useState(false);
   const [capacity, setCapacity] = useState(null),
     [progress, setProgress] = useState(null),
+    [collectionHistory, setCollectionHistory] = useState([]),
     [reply, setReply] = useState(
       "Hi Alice, received. This shared session works both ways.",
     );
@@ -755,11 +757,22 @@ export default function App() {
           "warning",
         );
       data.events.forEach(consumeEvent);
-      if (data.progress && Object.keys(data.progress).length)
+      if (data.progress && Object.keys(data.progress).length) {
         setProgress(data.progress);
+        setCollectionHistory((history) =>
+          appendCollectionSample(history, data.progress),
+        );
+      }
       setMonitorLost(false);
       if (data.status === "SUCCEEDED") {
         setSession(data.result);
+        setCollectionHistory((history) =>
+          appendCollectionSample(history, {
+            delivered_pairs: data.result.delivered_pairs,
+            zz_bits: data.result.zz_raw_key_bits,
+            xx_bits: data.result.xx_parameter_estimation_bits,
+          }),
+        );
         setRoute(data.result.selected_node_names);
         setActiveEdges(routeEdges(data.result.selected_node_names));
         setPhase("complete");
@@ -802,6 +815,7 @@ export default function App() {
       setBusy(true);
       setMonitorLost(false);
       setProgress(null);
+      setCollectionHistory([]);
       setSession(null);
       demoKey.current = null;
       setMessages([]);
@@ -996,6 +1010,7 @@ export default function App() {
     setActiveEdges([]);
     setJobId(null);
     setProgress(null);
+    setCollectionHistory([]);
     demoNonces.current = null;
     log("system", "Session cleared. Network editing is available.");
   };
@@ -1928,6 +1943,7 @@ export default function App() {
           {(busy || session || progress) && (
             <Telemetry
               progress={progress}
+              history={collectionHistory}
               session={session}
               busy={busy}
               mode={mode}

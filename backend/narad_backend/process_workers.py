@@ -1,11 +1,31 @@
 """Spawn-safe worker entry points. Initialization payloads exclude API keys, sessions, and parent locks."""
 from pathlib import Path
+import signal
 
 _INITIALIZATION_ERROR = None
 
 
+def reset_worker_termination():
+    # fork inherits Uvicorn's main-process SIGTERM handler. Pool.terminate()
+    # must terminate a worker, not set an unused child server.should_exit flag.
+    signal.signal(signal.SIGTERM, signal.SIG_DFL)
+
+
+def initialize_forked_routed():
+    reset_worker_termination()
+    from . import engine
+    engine._narad_routed_worker_initializer()
+
+
+def initialize_forked_benchmark():
+    reset_worker_termination()
+    from . import engine
+    engine.phase3k_farm_worker_initializer()
+
+
 def initialize_routed(context):
     global _INITIALIZATION_ERROR
+    reset_worker_termination()
     try:
         from . import engine
         ns = vars(engine)
@@ -30,6 +50,7 @@ def routed_pair(pair_index):
 
 def initialize_benchmark(configuration):
     global _INITIALIZATION_ERROR
+    reset_worker_termination()
     try:
         from . import engine
         ns = vars(engine)

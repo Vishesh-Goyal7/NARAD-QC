@@ -66,6 +66,22 @@ class SpawnContext:
         return getattr(self.context, name)
 
 
+class ForkContext:
+    def __init__(self, context):
+        self.context = context
+
+    def Pool(self, *args, **kwargs):
+        name = getattr(kwargs.get('initializer'), '__name__', '')
+        if name == '_narad_routed_worker_initializer':
+            kwargs['initializer'] = process_workers.initialize_forked_routed
+        elif name == 'phase3k_farm_worker_initializer':
+            kwargs['initializer'] = process_workers.initialize_forked_benchmark
+        return self.context.Pool(*args, **kwargs)
+
+    def __getattr__(self, name):
+        return getattr(self.context, name)
+
+
 class ProcessModule:
     def __init__(self, namespace, method):
         self.namespace, self.method = namespace, method
@@ -74,7 +90,7 @@ class ProcessModule:
         # Original generated cells request fork. Resolve that request for the
         # standalone target OS without monkeypatching multiprocessing globally.
         context = multiprocessing.get_context(self.method)
-        return SpawnContext(context, self.namespace) if self.method == 'spawn' else context
+        return SpawnContext(context, self.namespace) if self.method == 'spawn' else ForkContext(context)
 
     def __getattr__(self, name):
         return getattr(multiprocessing, name)

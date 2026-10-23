@@ -2037,3 +2037,30 @@ h1 {
   .splash-credit { font-size: 19px; margin-top: 30px; }
 }
 @media (prefers-reduced-motion: reduce) { .splash-content { animation: none; } }
+
+.collection-chart { border-top: 1px solid var(--border); padding: 22px 24px 16px; }
+.collection-chart-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.collection-chart h3 { font-size: 13px; margin: 0 0 6px; color: #405570; }
+.collection-chart-heading p, .collection-chart-note { font-size: 10px; line-height: 1.6; color: #8a9ab0; margin: 0; }
+.chart-sample-time { color: #7588a3; font-size: 10px; white-space: nowrap; }
+.collection-legend { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 20px 0 12px; }
+.collection-legend > div { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #6a7e99; }
+.collection-legend strong { color: var(--series-color); font-variant-numeric: tabular-nums; }
+.collection-swatch { width: 17px; height: 3px; border-radius: 4px; background: var(--series-color); }
+.collection-plot { position: relative; min-width: 0; }
+.collection-plot svg { width: 100%; display: block; overflow: visible; touch-action: pan-y; }
+.collection-plot text { fill: #8798b0; font-size: 10px; font-family: inherit; }
+.collection-plot .collection-axis-label { font-size: 9px; fill: #8b9cb2; }
+.collection-gridline { stroke: #edf1f7; stroke-width: 1; }
+.collection-empty { position: absolute; inset: 25% 16px 30% 54px; display: grid; place-items: center; text-align: center; color: #8b9cb2; font-size: 11px; background: #ffffffbd; }
+.collection-scrubber { display: flex; align-items: center; gap: 12px; font-size: 10px; color: #8293ac; margin: 12px 0; }
+.collection-scrubber input { flex: 1; min-width: 0; accent-color: #377dff; height: 14px; padding: 0; }
+.collection-scrubber button { padding: 4px 10px; border: 1px solid #e0e8f5; border-radius: 5px; background: #f7faff; color: #377dff; font-size: 10px; }
+.collection-chart-note { margin-top: 10px; }
+@media (max-width: 580px) {
+  .collection-chart { padding: 16px 12px; }
+  .collection-chart-heading { align-items: flex-start; }
+  .chart-sample-time { white-space: normal; text-align: right; }
+  .collection-legend { gap: 12px; }
+  .collection-legend > div { font-size: 10px; gap: 5px; }
+}

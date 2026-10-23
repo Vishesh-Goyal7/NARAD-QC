@@ -1,4 +1,5 @@
 import React from "react";
+import CollectionChart from "./CollectionChart";
 import { Activity, Cpu, Layers, CheckCheck } from "lucide-react";
 import { progressView } from "./progress";
 const number = (value) =>
@@ -7,6 +8,7 @@ const number = (value) =>
     : "—";
 export default function Telemetry({
   progress,
+  history,
   session,
   busy,
   mode,
@@ -123,6 +125,7 @@ export default function Telemetry({
           </div>
         </div>
       </div>
+      <CollectionChart history={history} mode={mode} />
       {p.worker_state?.direct_fallback && (
         <div className="telemetry-fallback">
           Direct single-worker execution is active; physical quantum lanes are

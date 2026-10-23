@@ -2,6 +2,7 @@
 import math
 import multiprocessing
 import os
+import signal
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -21,6 +22,10 @@ def context():
     return {'network':network,
             'candidate_path':engine.phase4_build_candidate_path(network,0,('Alice','R1','Bob')),
             'qkd_config':engine.PHASE3J_BIASED_BBM92_CONFIG,'physical_seed':12345,'protocol_seed':67890}
+
+
+def reports_default_sigterm():
+    return signal.getsignal(signal.SIGTERM) == signal.SIG_DFL
 
 
 class ProcessParityTests(unittest.TestCase):
@@ -50,6 +55,22 @@ class ProcessParityTests(unittest.TestCase):
     def test_original_fork_matches_same_reference(self):
         with multiprocessing.get_context('fork').Pool(2,initializer=engine._narad_routed_worker_initializer) as pool:
             self.compare([r['payload'] for r in pool.map(engine._narad_routed_worker_simulate_pair,range(3))])
+
+    @unittest.skipUnless('fork' in multiprocessing.get_all_start_methods(), 'fork is POSIX only')
+    def test_forked_workers_do_not_inherit_server_sigterm_handler(self):
+        from narad_backend.parallel import ForkContext
+        previous = signal.signal(signal.SIGTERM, lambda *_: None)
+        try:
+            pool = ForkContext(multiprocessing.get_context('fork')).Pool(
+                1, initializer=engine._narad_routed_worker_initializer)
+            try:
+                result = pool.apply_async(reports_default_sigterm).get(timeout=15)
+            finally:
+                pool.close()
+                pool.join()
+            self.assertTrue(result)
+        finally:
+            signal.signal(signal.SIGTERM, previous)
 
     def test_invalid_start_method_rejected(self):
         with patch.dict(os.environ,{'NARAD_MP_START_METHOD':'invalid'}):
