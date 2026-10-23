@@ -488,10 +488,12 @@ If the project helped you explore quantum networking, inspired an experiment, ma
 
 **Vishesh Goyal**  
 [Mail](mailto:visheshvishu1@outlook.com) 
-[GitHub](https://github.com/Vishesh-Goyal7) 
-[LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) 
+
 [Portfolio](https://visheshverse.com)
 
+[GitHub](https://github.com/Vishesh-Goyal7) 
+
+[LinkedIn](https://www.linkedin.com/in/vishesh-goyal-2k5) 
 ---
 
 <p align="center">Developed by <a href="https://visheshverse.com">VisheshVerse</a></p>
