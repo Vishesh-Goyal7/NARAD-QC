@@ -1,0 +1,10 @@
+feature,standardized_coefficient,absolute_coefficient
+elementary_distance_km^2,-1.6895827349294148,1.6895827349294148
+elementary_distance_km,-1.4126204305957408,1.4126204305957408
+elementary_distance_km multiplexed_cycle_success_probability,0.9368545614296565,0.9368545614296565
+repeater_count,0.47345052292390527,0.47345052292390527
+repeater_count^2,0.28751196215651975,0.28751196215651975
+multiplexed_cycle_success_probability,0.26210836078845157,0.26210836078845157
+repeater_count multiplexed_cycle_success_probability,0.09148542787159267,0.09148542787159267
+elementary_distance_km repeater_count,-0.07852769790023857,0.07852769790023857
+multiplexed_cycle_success_probability^2,0.012144951865134312,0.012144951865134312

@@ -1,0 +1,8 @@
+feature_a,feature_b,pearson,spearman
+repeater_count,predicted_visibility,-0.9999821041493779,-1.0
+repeater_count,predicted_qber,0.9999821041493768,1.0
+elementary_distance_km,single_mode_success_probability,-0.7235202568516774,-1.0
+predicted_visibility,predicted_qber,-1.0000000000000002,-1.0
+multiplexed_cycle_success_probability,delivery_proxy_s,-0.18664850988970705,-0.9893103297478396
+delivery_proxy_s,memory_coherence_cost,0.9998619568556547,0.9613924050632912
+multiplexed_cycle_success_probability,memory_coherence_cost,-0.19098623697075098,-0.9542875907154887
