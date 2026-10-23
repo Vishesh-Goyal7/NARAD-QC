@@ -1,0 +1,68 @@
+{
+  "name": "First run - 200 km, two repeaters",
+  "nodes": [
+    {
+      "name": "Alice",
+      "role": "USER",
+      "x_km": 0,
+      "y_km": 0,
+      "memory_slots": 2,
+      "bsm_units": 0,
+      "bsm_success_probability": 0,
+      "active": true
+    },
+    {
+      "name": "R1",
+      "role": "REPEATER",
+      "x_km": 66.66666666666667,
+      "y_km": 0,
+      "memory_slots": 8,
+      "bsm_units": 2,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "R2",
+      "role": "REPEATER",
+      "x_km": 133.33333333333334,
+      "y_km": 0,
+      "memory_slots": 8,
+      "bsm_units": 2,
+      "bsm_success_probability": 0.4,
+      "active": true
+    },
+    {
+      "name": "Bob",
+      "role": "USER",
+      "x_km": 200,
+      "y_km": 0,
+      "memory_slots": 2,
+      "bsm_units": 0,
+      "bsm_success_probability": 0,
+      "active": true
+    }
+  ],
+  "links": [
+    {
+      "source": "Alice",
+      "target": "R1",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R1",
+      "target": "R2",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    },
+    {
+      "source": "R2",
+      "target": "Bob",
+      "modes": 8,
+      "attenuation": 0.2,
+      "active": true
+    }
+  ]
+}

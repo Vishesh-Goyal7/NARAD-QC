@@ -1,4 +1,4 @@
-# Python 3.12; Linux recommended for the notebook's fork-based trajectory farm.
+# Python 3.12; native Windows uses spawn, Linux/macOS default to fork.
 fastapi>=0.115,<1
 pydantic>=2.9,<3
 uvicorn>=0.30,<1

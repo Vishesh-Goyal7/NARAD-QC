@@ -38,6 +38,8 @@ def create_runtime(*, calibration_path, api_key, worker_limit=None, graph_path=N
     ns['phase4_network'] = bridge.build_network(ns, graph)
     transport = Path(__file__).with_name('transport.py')
     exec(compile(transport.read_text(), str(transport), 'exec'), ns)
+    from .parallel import install_parallel_support
+    install_parallel_support(engine)
     # Notebook counts host logical CPUs; servers need affinity and cgroup awareness.
     ns['_narad_runtime_cpu_count'] = available_cpus
     ns['_LOCAL_SERVER_INITIALIZED'] = True

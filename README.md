@@ -16,6 +16,8 @@
 
 ---
 
+**Native Windows setup:** see the [Windows edition README](README.Windows.md) for PowerShell setup, spawn-based workers, benchmarking, hard limits, and launch commands.
+
 ## 📝 Overview
 
 **How can a quantum communication network dynamically select reliable, authenticated, low-QBER paths between multiple users and repeaters?**

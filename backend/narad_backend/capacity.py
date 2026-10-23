@@ -8,6 +8,17 @@ def available_cpus():
     counts = [os.cpu_count() or 1]
     if hasattr(os, 'sched_getaffinity'):
         counts.append(len(os.sched_getaffinity(0)))
+    # Windows exposes affinity through psutil rather than sched_getaffinity.
+    if os.name == 'nt':
+        try:
+            import psutil
+        except ImportError:
+            pass
+        else:
+            try:
+                counts.append(len(psutil.Process().cpu_affinity()))
+            except (psutil.Error, OSError, AttributeError, NotImplementedError):
+                pass
     # Linux cgroup v2, then v1. Fractional quotas conservatively use whole workers.
     try:
         quota, period = Path('/sys/fs/cgroup/cpu.max').read_text().split()

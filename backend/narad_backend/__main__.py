@@ -33,6 +33,8 @@ def benchmark(args):
     ns = vars(engine)
     source = Path(__file__).with_name('farm.py')
     exec(compile(source.read_text(), str(source), 'exec'), ns)
+    from .parallel import install_parallel_support
+    start_method = install_parallel_support(engine)
     capacity = available_cpus()
     if args.workers:
         counts = sorted(set(int(x) for x in args.workers.split(',')))
@@ -70,7 +72,7 @@ def benchmark(args):
     best=max(rows,key=lambda r:r['pairs_per_s'])
     # Pick the smallest worker count within 3% of peak throughput.
     recommended=min(r['workers'] for r in rows if r['pairs_per_s']>=best['pairs_per_s']*.97)
-    report={'schema_version':1,'created_unix':time.time(),'available_cpus':capacity,
+    report={'schema_version':1,'process_start_method':start_method,'created_unix':time.time(),'available_cpus':capacity,
             'recommended_workers':recommended,'physics_equivalent':True,'pairs_per_repeat':pairs,
             'workload':{'distance_km':args.distance_km,'repeaters':args.repeaters,'modes':args.modes},
             'results':rows}
@@ -108,4 +110,6 @@ def serve_backend(args):
 
 
 if __name__=='__main__':
+    import multiprocessing
+    multiprocessing.freeze_support()
     main()
